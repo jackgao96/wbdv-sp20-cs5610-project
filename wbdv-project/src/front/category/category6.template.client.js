@@ -38,4 +38,4 @@ class Category6Component extends React.Component {
 }
 
 
-export default Category1Component
+export default Category6Component

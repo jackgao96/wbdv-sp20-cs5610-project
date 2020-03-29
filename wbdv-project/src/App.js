@@ -1,12 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
-import HomePageClient from "./front/homepage/HomePageClient"
+import LoadContainer from "./container/LoadContainer"
+import SearchTemplateClient from "./front/search/search.template.client"
+import LoginPageClient from "./front/login/login.template.client"
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-    <HomePageClient/>
+    <LoadContainer/>
     </div>
   );
 }
