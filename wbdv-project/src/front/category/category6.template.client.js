@@ -10,8 +10,11 @@ class Category6Component extends React.Component {
 
     componentDidMount = async () => {
         //TODO: function to fetch the category's stocks and user's watchlist
-        const stocks = await getCategoryStocks("Category 6")
-        const watchList = fetchWatchlist(user)
+        //const stocks = await getCategoryStocks("Category 6")
+        const stocks = [{name:'Apple', symbol: 'AAPL', price: 100, recommendation: 'BUY'},
+            {name:'Microsoft', symbol: 'MSFT', price: 200, recommendation: 'BUY'}]
+        //const watchList = await fetchWatchlist(user)
+        const watchList = [{name:'Apple', symbol: 'AAPL', price: 100, recommendation: 'BUY'}]
         this.setState({
             stocks: stocks,
             watchList: watchList
@@ -29,7 +32,7 @@ class Category6Component extends React.Component {
             <div>
                 <CategoryTableComponent
                     category="Category 6"
-                    stocks={stocks}
+                    stocks={this.state.stocks}
                     addToWatchList={this.addToWatchList}
                 />
             </div>

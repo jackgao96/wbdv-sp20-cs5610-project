@@ -4,8 +4,7 @@ const CategoryTableRow = ({stock, addToWatchlist}) =>
     <React.Fragment>
         <table className = "table">
             <tdead className = "tdead-light ">
-            <tr>
-                <td scope="col">Title</td>
+            <tr className='row'>
                 <td className = "d-none d-sm-table-cell" scope="col">{stock.name}</td>
                 <td className = "d-none d-md-table-cell" scope="col">{stock.symbol}</td>
                 <td className = "d-none d-md-table-cell" scope="col">{stock.price}</td>
