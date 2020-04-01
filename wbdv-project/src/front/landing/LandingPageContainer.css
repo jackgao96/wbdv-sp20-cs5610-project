@@ -1,5 +1,5 @@
 #bgVideo {
-    position: fixed;
+    position: relative;
     right: 0;
     bottom: 0;
     min-width: 100%;
@@ -18,9 +18,11 @@
 
 #access{
     margin-top: 200px;
+    top: 200px;
 }
 
 .btn{
+    z-index: 10;
     display: block;
     margin-top: 50px;
     margin-left: auto;
