@@ -6,7 +6,7 @@ const CategoryTableComponent = ({category, stocks, addToWatchList}) =>
         <h1 id = "categoryHeading">{category}</h1>
         <table className = "table">
             <thead className = "thead-light ">
-            <tr>
+            <tr className='row'>
                 <th scope="col">Title</th>
                 <th className = "d-none d-sm-table-cell" scope="col">Stock name</th>
                 <th className = "d-none d-md-table-cell" scope="col">Stock symbol</th>
@@ -20,9 +20,9 @@ const CategoryTableComponent = ({category, stocks, addToWatchList}) =>
 
             <tbody>
             {
-                stocks.map(function(stock) {
+                stocks.map(function (stock, index) {
                     return <CategoryTableRow
-                        addToWatchlist = {this.addToWatchList}
+                        addToWatchlist={addToWatchList}
                         stock={stock}/>
                 })
             }
