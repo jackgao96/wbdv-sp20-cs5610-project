@@ -10,7 +10,7 @@ import LandingPageContainer from "./front/landing/landing.template.client";
 function App() {
   return (
     <div className="App">
-    <Category1Component/>
+    <LoadContainer/>
     </div>
   );
 }

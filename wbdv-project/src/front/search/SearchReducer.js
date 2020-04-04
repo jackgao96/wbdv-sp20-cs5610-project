@@ -2,8 +2,9 @@ const initialState = {
     stock: [
         {
             price: '',
-            symbol: ''
-        }
+            symbol: '',
+       }
+
     ]
 }
 const SearchReducer = (state = initialState, action) => {
@@ -11,12 +12,13 @@ const SearchReducer = (state = initialState, action) => {
         // TODO: move all strings to constants
         case "SEARCH_STOCK": {
             console.log(action.stock)
-            console.log(state.stock)
+            //console.log(state.stock)
             return {
                 //topics: action.topics
                 stock: action.stock
             }
         }
+
         default:
             return state
     }

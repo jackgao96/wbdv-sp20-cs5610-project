@@ -3,11 +3,18 @@ import React from "react";
 
 class SearchClientComponent extends React.Component {
     state = {
-        stockname: ''
+        stockname: '',
+        gainstock: [],
+        losestock: []
     }
 
-    componentDidMount() {
-        console.log(this.props)
+    componentDidMount = async () => {
+        const initstock = await this.props.initGainer()
+        const initstock2 = await this.props.initLoser()
+        this.setState({
+            gainstock: initstock,
+            losestock: initstock2
+        })
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -22,14 +29,14 @@ class SearchClientComponent extends React.Component {
             <div>
                 <div className="container">
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                        <a className="navbar-brand" href="#">Navbar with our cool logo</a>
+                        <a className="navbar-brand" href="/home">Navbar with our cool logo</a>
                     </nav>
                 </div>
                 <div className="container">
                     <h1>self-research</h1>
-                    <div className="input-group mb-3">
+
+                    <div class="input-group-prepend">
                         <input type="text" className="form-control" placeholder="Search the Stock"
-                               aria-label="Recipient's username" aria-describedby="button-addon2"
                                onChange={(e) => {
                                    const newStock = e.target.value
                                    this.setState(prevState => ({
@@ -37,9 +44,8 @@ class SearchClientComponent extends React.Component {
                                    }))
                                }}
                                value={this.state.stockname}/>
-
-                        <div className="input-group-append">
-                            <button className="btn btn-outline-secondary" type="button" id="button-addon2"
+                        <div className="input-group-prepend">
+                            <button class="btn bg-info btn-rounded btn-sm my-0" type="submit"
                                     onClick={() => {
                                         this.props.searchStock(this.state.stockname)
                                             .then(() =>
@@ -47,32 +53,76 @@ class SearchClientComponent extends React.Component {
                                                     stockname: ''
                                                 })
                                             )
-                                        console.log(this.props)
                                     }
-                                    }
-                            >Search
+                                    }>Search
                             </button>
                         </div>
-                        {
-                            console.log(this.props.stock)
-                        }
-                        {this.props.stock.price &&
-                        <div className="container">
-                            <p>Stock Name:{this.props.stock.symbol}</p>
-                            <p>Current Price:{this.props.stock.price}</p>
-                            <p>Recommendation: Strong Buy</p>
-                        </div>
-                        }
                     </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3 class="alert alert-success">
+                                Today's Top Gainer
+                            </h3>
+
+                            {
+                                //console.log(this.state.initstock.mostGainerStock)
+                                this.state.gainstock.mostGainerStock && this.state.gainstock.mostGainerStock.map(itstock =>
+                                    <div className="row container">
+                                        <h5>Name:</h5> {itstock.companyName}
+                                        {itstock.ticker}
+                                        <h5>Percentage:</h5>
+                                        {itstock.changesPercentage}
+                                        <h5>Price:</h5>
+                                        {itstock.price}
+                                    </div>
+                                )
+                                //console.log(this.props.initstock)
+                            }
+                        </div>
+                        <div class={"col-sm-6"}>
+                            <h3 className="alert alert-danger">
+                                Today's Top Loser
+                            </h3>
+
+                            {
+                                //console.log(this.state.initstock.mostGainerStock)
+                                this.state.losestock.mostLoserStock && this.state.losestock.mostLoserStock.map(itstock =>
+                                    <div className="row container">
+                                        <h5>Name:</h5> {itstock.companyName}
+                                        {itstock.ticker}
+                                        <h5>Percentage:</h5>
+                                        {itstock.changesPercentage}
+                                        <h5>Price:</h5>
+                                        {itstock.price}
+                                    </div>
+                                )
+                                //console.log(this.props.initstock)
+                            }
+                        </div>
+                    </div>
+                    {this.props.stock.price &&
+                    <div className="container">
+                        <div>
+                            <h3 className="alert alert-info">
+                                Search Result
+                            </h3>
+                        </div>
+                        <p>Stock Name:{this.props.stock.symbol}</p>
+                        <p>Current Price:{this.props.stock.price}</p>
+                        <p>Recommendation: Strong Buy</p>
+                    </div>
+                    }
                 </div>
             </div>
+
         )
     }
 }
 
 const stateToPropertyMapper = (state) => ({
         //topics: state.topics.topics
-        stock: state.stock.stock
+        stock: state.stock.stock,
+        initstock: state.stock.initstock
 
     }
 
@@ -84,7 +134,13 @@ const dispatcherToPropertyMapper = (dispatcher) => ({
             .then(stock => dispatcher({
                 type: 'SEARCH_STOCK',
                 stock: stock
-            }))
+            })),
+    initGainer: async () =>
+        fetch('https://financialmodelingprep.com/api/v3/stock/gainers')
+            .then(response => response.json()),
+    initLoser: async () =>
+        fetch('https://financialmodelingprep.com/api/v3/stock/losers')
+            .then(response => response.json())
 })
 
 export default connect(
