@@ -34,9 +34,7 @@ class HomePageClient extends React.Component {
                         <div className=" mt-3 col-md-4">
                             <a href="#">
                                 <div className="card mb-4 shadow-sm">
-                                    <h5> Slow growers </h5>
-                                    <p>Large capital. Around 5% annual growth (CAGR - Compound annual growth rate).
-                                        Generous & regular dividends</p>
+                                    <h5> Energy</h5>
                                 </div>
                             </a>
 
@@ -44,8 +42,8 @@ class HomePageClient extends React.Component {
                         <div className="mt-3 col-md-4">
                             <a href="#">
                                 <div className="card mb-4 shadow-sm">
-                                    <h5> Stalwarts </h5>
-                                    <p> Large capital. Around 10% annual growth (CAGR).</p>
+                                    <h5> Industrials  </h5>
+
                                 </div>
                             </a>
 
@@ -53,8 +51,8 @@ class HomePageClient extends React.Component {
                         <div className="mt-3 col-md-4">
                             <a href="#">
                                 <div className="card mb-4 shadow-sm">
-                                    <h5> Fast growers </h5>
-                                    <p>Small and mid capital stocks. Annual growth of 25%. </p>
+                                    <h5> Consumer Discretionary </h5>
+
                                 </div>
                             </a>
 
@@ -62,16 +60,16 @@ class HomePageClient extends React.Component {
                         <div className="mt-3 col-md-4">
                             <a href="#">
                                 <div className="card mb-4 shadow-sm">
-                                    <h5> Cyclicals </h5>
-                                    <p>Periodically falling and rising</p>
+                                    <h5> Information Technology </h5>
+
                                 </div>
                             </a>
                         </div>
                         <div className="mt-3 col-md-4">
                             <a href="#">
                                 <div className="card mb-4 shadow-sm">
-                                    <h5> Turnarounds </h5>
-                                    <p>Large rise after a long fall</p>
+                                    <h5> Utilities  </h5>
+
                                 </div>
                             </a>
 
@@ -79,8 +77,8 @@ class HomePageClient extends React.Component {
                         <div className="mt-3 col-md-4">
                             <a href="#">
                                 <div className="card mb-4 shadow-sm">
-                                    <h5> Asset plays </h5>
-                                    <p>High asset value</p>
+                                    <h5> Financial </h5>
+                                   
                                 </div>
                             </a>
                         </div>
