@@ -5,12 +5,28 @@ class SearchClientComponent extends React.Component {
     state = {
         stockname: '',
         gainstock: [],
-        losestock: []
+        losestock: [],
+        profile: {
+            username: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            roles: []
+        }
     }
 
     componentDidMount = async () => {
         const initstock = await this.props.initGainer()
         const initstock2 = await this.props.initLoser()
+
+        fetch(`https://infinite-retreat-10652.herokuapp.com/profile`, {
+            method: 'POST',
+            credentials: "include"
+        }).then(reseponse => reseponse.json()).then(profile => this.setState({
+            profile: profile
+        }))
+
         this.setState({
             gainstock: initstock,
             losestock: initstock2
@@ -24,6 +40,14 @@ class SearchClientComponent extends React.Component {
         }
     }
 
+    logout = () =>
+        fetch(`https://infinite-retreat-10652.herokuapp.com/logout`, {
+            method: 'POST',
+            credentials: "include"
+        }).then(status => {
+            this.props.history.push('/')
+        })
+
     render() {
         return (
             <div>
@@ -34,7 +58,15 @@ class SearchClientComponent extends React.Component {
                 </div>
                 <div className="container">
                     <h1>self-research</h1>
-
+                    <div class="row">
+                        Hi {this.state.profile.username}!
+                        <hr/>
+                        <button
+                            onClick={this.logout}
+                            className={`btn btn-danger`}>
+                            Logout
+                        </button>
+                    </div>
                     <div class="input-group-prepend">
                         <input type="text" className="form-control" placeholder="Search the Stock"
                                onChange={(e) => {

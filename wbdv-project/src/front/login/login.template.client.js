@@ -1,19 +1,42 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-class LoginPageCient extends React.Component{
-    render(){
-        return(
+
+class LoginPageCient extends React.Component {
+    state = {
+        username: '',
+        password: ''
+    }
+
+    handleLogin = (user) =>
+        fetch(`https://infinite-retreat-10652.herokuapp.com/login`, {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            },
+            credentials: "include"
+        }).then(response => response.json())
+            .then(currentUser => this.props.history.push('/search'))
+
+
+    render() {
+        return (
             <div className="container">
                 <h1>Sign In</h1>
                 <form>
                     <div className="form-group row">
                         <label htmlFor="username" className="col-sm-2 col-form-label">
-                            Username 
+                            Username
                         </label>
                         <div className="col-sm-10">
                             <input className="form-control wbdv-field wbdv-username"
-                                id="username"
-                                placeholder="Alice"/>
+                                   id="username"
+                                   placeholder="Alice"
+                                   value={this.state.username}
+                                   onChange={(e) => this.setState({
+                                       username: e.target.value
+                                   })}
+                            />
                         </div>
                     </div>
                     <div className="form-group row">
@@ -21,15 +44,23 @@ class LoginPageCient extends React.Component{
                             Password </label>
                         <div className="col-sm-10">
                             <input type="password" className="form-control wbdv-field wbdv-password"
-                                id="password" placeholder="123qwe#$%"/>
+                                   id="password" placeholder="123qwe#$%"
+                                   value={this.state.password}
+                                   onChange={(e) => this.setState({
+                                       password: e.target.value
+                                   })}
+                            />
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
-                            <button 
+                            <button
                                 className="btn btn-primary btn-block wbdv-button wbdv-login"
-                                onClick={()=>{this.props.history.push("/")}}>
+                                onClick={() => {
+                                    this.handleLogin(this.state)
+                                    this.props.history.push("/search")
+                                }}>
                                 Sign In
                             </button>
                             <div className="row">
@@ -45,8 +76,9 @@ class LoginPageCient extends React.Component{
                         </div>
                     </div>
                 </form>
-            </div>   
+            </div>
         )
     }
 }
+
 export default LoginPageCient
