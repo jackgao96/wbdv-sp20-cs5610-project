@@ -20,17 +20,18 @@ class SearchClientComponent extends React.Component {
         const initstock = await this.props.initGainer()
         const initstock2 = await this.props.initLoser()
 
-        fetch(`https://infinite-retreat-10652.herokuapp.com/profile`, {
+        fetch(`http://infinite-retreat-10652.herokuapp.com/profile`, {
             method: 'POST',
             credentials: "include"
         }).then(reseponse => reseponse.json()).then(profile => this.setState({
             profile: profile
-        }))
+        })).then(status => console.log(this.state.profile))
 
         this.setState({
             gainstock: initstock,
             losestock: initstock2
         })
+        console.log(this.state.profile)
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -40,13 +41,14 @@ class SearchClientComponent extends React.Component {
         }
     }
 
-    logout = () =>
-        fetch(`https://infinite-retreat-10652.herokuapp.com/logout`, {
+    logout = () => {
+        fetch(`http://infinite-retreat-10652.herokuapp.com/logout`, {
             method: 'POST',
             credentials: "include"
-        }).then(status => {
-            this.props.history.push('/')
         })
+
+
+    }
 
     render() {
         return (
@@ -64,13 +66,19 @@ class SearchClientComponent extends React.Component {
                     </div>
                     <div class="row">
                         <hr/>
-                    <div class=" pull-right">
-                        <button
-                            onClick={this.logout}
-                            className={`btn btn-danger`}>
-                            Logout
-                        </button>
-                    </div>
+                        <div class=" pull-right">
+                            <button
+                                onClick={()=>{
+
+                                    this.logout()
+                                    this.props.history.push('/home')
+
+                                }}
+
+                                className={`btn btn-danger`}>
+                                Logout
+                            </button>
+                        </div>
                     </div>
                     <div class="input-group-prepend">
                         <input type="text" className="form-control" placeholder="Search the Stock"

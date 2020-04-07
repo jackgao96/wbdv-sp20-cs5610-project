@@ -29,7 +29,9 @@ class LoadContainer extends React.Component{
                 <Route
                     path="/research"
                     exact={true}
-                    render={()=><SearchTemplateClient/>}
+                    render={(props)=><SearchTemplateClient
+                        {...props}
+                    />}
                 />
                 <Route
                     path="/login"

@@ -13,7 +13,9 @@ class SearchTemplateClient extends React.Component {
     render() {
         return (
             <Provider store={store}>
-           <SearchClientComponent/>
+           <SearchClientComponent
+               history={this.props.history}
+           />
             </Provider>)
                 }
 }

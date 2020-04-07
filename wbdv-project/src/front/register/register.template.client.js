@@ -10,7 +10,7 @@ class RegisterPageClient extends React.Component {
     }
     register = (user) => {
         if (this.state.password===this.state.verifiPassword){
-            fetch('https://infinite-retreat-10652.herokuapp.com/api/users', {
+            fetch('http://infinite-retreat-10652.herokuapp.com/api/users', {
                 method: "POST",
                 body: JSON.stringify(user),
                 headers: {

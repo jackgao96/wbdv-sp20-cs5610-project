@@ -7,17 +7,17 @@ class LoginPageCient extends React.Component {
         password: ''
     }
 
-    handleLogin = (user) =>
-        fetch(`https://infinite-retreat-10652.herokuapp.com/login`, {
+    handleLogin = (user) => {
+        fetch(`http://infinite-retreat-10652.herokuapp.com/login`, {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
             },
             credentials: "include"
-        }).then(response => response.json())
-            .then(currentUser => this.props.history.push('/search'))
-
+        }).then(response => response.json()).then(currentUser => this.props.history.push('/home'))
+        this.props.history.push('/home')
+    }
 
     render() {
         return (
@@ -57,10 +57,10 @@ class LoginPageCient extends React.Component {
                         <div className="col-sm-10">
                             <button
                                 className="btn btn-primary btn-block wbdv-button wbdv-login"
-                                onClick={() => {
+                                onClick={() =>
                                     this.handleLogin(this.state)
-                                    this.props.history.push("/search")
-                                }}>
+                                    //this.props.history.push("/search")
+                                }>
                                 Sign In
                             </button>
                             <div className="row">
