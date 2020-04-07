@@ -20,7 +20,7 @@ class SearchClientComponent extends React.Component {
         const initstock = await this.props.initGainer()
         const initstock2 = await this.props.initLoser()
 
-        fetch(`http://infinite-retreat-10652.herokuapp.com/profile`, {
+        fetch(`http://localhost:8080/profile`, {
             method: 'POST',
             credentials: "include"
         }).then(reseponse => reseponse.json()).then(profile => this.setState({
@@ -42,7 +42,7 @@ class SearchClientComponent extends React.Component {
     }
 
     logout = () => {
-        fetch(`http://infinite-retreat-10652.herokuapp.com/logout`, {
+        fetch(`http://localhost:8080/logout`, {
             method: 'POST',
             credentials: "include"
         })
