@@ -8,15 +8,22 @@ class RegisterPageClient extends React.Component {
         verifiPassword: '',
         email:''
     }
-    register = (user) =>
-        fetch('https://infinite-retreat-10652.herokuapp.com/api/users',{
-            method: "POST",
-            body: JSON.stringify(user),
-            headers: {
-                'content-type': 'application/json'
-            },
-            credentials: "include"
-        })
+    register = (user) => {
+        if (this.state.password===this.state.verifiPassword){
+            fetch('https://infinite-retreat-10652.herokuapp.com/api/users', {
+                method: "POST",
+                body: JSON.stringify(user),
+                headers: {
+                    'content-type': 'application/json'
+                },
+                credentials: "include"
+            })
+            this.props.history.push('/home')
+        }
+        else{
+            alert('You should verify your password!')
+        }
+    }
 
     render() {
         return (
@@ -54,6 +61,7 @@ class RegisterPageClient extends React.Component {
                             Verify Password </label>
                         <div className="col-sm-10">
                             <input className="form-control wbdv-field wbdv-password-verify"
+                                   type="password"
                                    id="verifyPasswordFld"
                                    value={this.state.verifiPassword}
                                    onChange={(e) => this.setState({
@@ -81,7 +89,7 @@ class RegisterPageClient extends React.Component {
                             <button className="btn btn-primary btn-block wbdv-button wbdv-register"
                                     onClick={() => {
                                         this.register(this.state)
-                                        this.props.history.push('/home')
+
                                     }}>
                                 Sign Up
                             </button>

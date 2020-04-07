@@ -59,13 +59,18 @@ class SearchClientComponent extends React.Component {
                 <div className="container">
                     <h1>self-research</h1>
                     <div class="row">
-                        Hi {this.state.profile.username}!
                         <hr/>
+                        Hi {this.state.profile.username}!
+                    </div>
+                    <div class="row">
+                        <hr/>
+                    <div class=" pull-right">
                         <button
                             onClick={this.logout}
                             className={`btn btn-danger`}>
                             Logout
                         </button>
+                    </div>
                     </div>
                     <div class="input-group-prepend">
                         <input type="text" className="form-control" placeholder="Search the Stock"
@@ -77,7 +82,7 @@ class SearchClientComponent extends React.Component {
                                }}
                                value={this.state.stockname}/>
                         <div className="input-group-prepend">
-                            <button class="btn bg-info btn-rounded btn-sm my-0" type="submit"
+                            <button class="btn bg-info btn-rounded my-0" type="submit"
                                     onClick={() => {
                                         this.props.searchStock(this.state.stockname)
                                             .then(() =>
