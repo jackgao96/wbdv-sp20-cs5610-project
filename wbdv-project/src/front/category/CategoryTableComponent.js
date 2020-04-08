@@ -2,14 +2,6 @@ import React from "react";
 import CategoryTableRow from './CategoryTableRow'
 
 class CategoryTableComponent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.props = props;
-    }
-
-    componentDidMount = async() => {
-
-    }
 
     render(){
         return(
@@ -32,11 +24,11 @@ class CategoryTableComponent extends React.Component {
                     <tbody>
                     {
 
-                        this.props.stocks.map(function (stock, index) {
-                            return <CategoryTableRow
+                        this.props.stocks.map ( (stock, index) =>
+                             <CategoryTableRow
                                 addToWatchlist={this.props.addToWatchList}
                                 stock={stock}/>
-                        })
+                        )
                     }
                     </tbody>
                 </table>

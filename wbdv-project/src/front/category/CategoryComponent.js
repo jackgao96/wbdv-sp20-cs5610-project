@@ -26,6 +26,7 @@ class CategoryComponent extends React.Component {
         // const watchList = [{name:'Apple', symbol: 'AAPL', price: 100, recommendation: 'BUY'}]
         // console.log(this.catName)
         const serviceCatStocks = await this.stockService.getStocksForCategory(this.catName)
+        console.log(serviceCatStocks)
         // this.catStocks = await this.stockService.getStocksForCategory(this.catName)
         this.setState({
             catStocks: serviceCatStocks,

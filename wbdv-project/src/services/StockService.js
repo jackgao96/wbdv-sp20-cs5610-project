@@ -5,7 +5,7 @@ class StockService{
                 headers: {
                     'content-type': 'application/json'
                 }
-            })
+            }).then(response => response.json())
     }
 }
 export default StockService;
