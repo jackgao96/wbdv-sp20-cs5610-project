@@ -14,6 +14,7 @@ import Category6Component from '../front/category/category6.template.client'
 */
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import LandingPageContainer from "../front/landing/landing.template.client";
+import CategoryComponent from "../front/category/CategoryComponent";
 
 
 class LoadContainer extends React.Component{
@@ -23,67 +24,30 @@ class LoadContainer extends React.Component{
                 <Route
                     path="/"
                     exact={true}
-                    render={()=>
-                        <LandingPageContainer/>
-                    }/>
+                    component = {LandingPageContainer}/>
                 <Route
                     path="/research"
                     exact={true}
-                    render={(props)=><SearchTemplateClient
-                        {...props}
-                    />}
-                />
+                    component = {LandingPageContainer}/>
                 <Route
                     path="/login"
                     exact={true}
-                    render={(props)=><LoginPageClient
-                                    {...props}
-                                    />}
-                />
+                    component = {LoginPageClient}/>
                 <Route
                     path="/register"
                     exact={true}
-                    render={(props)=><RegisterPageClient
-                                    {...props}/>}
+                    component = {RegisterPageClient}
                 />
                 <Route
                     path="/home"
                     exact={true}
-                    render={()=>
-                        <HomePageClient/>
-                    }/>
-                {/*
+                    component = {HomePageClient}/>
+
                 <Route
-                    path="/c1"
+                    path="/category/:catName"
                     exact={true}
-                    render={()=><Category1Component/>}
+                    component={CategoryComponent}
                 />
-                <Route
-                    path="/c2"
-                    exact={true}
-                    render={()=><Category2Component/>}
-                />
-                <Route
-                    path="/c3"
-                    exact={true}
-                    render={()=><Category3Component/>}
-                />
-                <Route
-                    path="/c4"
-                    exact={true}
-                    render={()=><Category4Component/>}
-                />
-                <Route
-                    path="/c5"
-                    exact={true}
-                    render={()=><Category5Component/>}
-                />
-                <Route
-                    path="/c6"
-                    exact={true}
-                    render={()=><Category6Component/>}
-                />
-                */}
 
             </Router>
             
