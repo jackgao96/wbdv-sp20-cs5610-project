@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-class LoginPageCient extends React.Component {
+class LoginPageClient extends React.Component {
     state = {
         username: '',
         password: ''
@@ -81,4 +81,4 @@ class LoginPageCient extends React.Component {
     }
 }
 
-export default LoginPageCient
+export default LoginPageClient

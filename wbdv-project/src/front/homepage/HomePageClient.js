@@ -1,6 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
 class HomePageClient extends React.Component {
+    constructor(params) {
+        super(params);
+        this.params = params
+    }
+    routeToCategory = (catName) => {
+      this.props.history.push("/category/"+catName)
+    };
     render() {
         return (
             <div>
@@ -32,7 +39,7 @@ class HomePageClient extends React.Component {
                 <div className="container">
                     <div className=" row">
                         <div className=" mt-3 col-md-4">
-                            <a href="#">
+                            <a onClick={() => this.routeToCategory("ENG")}>
                                 <div className="card mb-4 shadow-sm">
                                     <h5> Energy</h5>
                                 </div>
@@ -40,7 +47,7 @@ class HomePageClient extends React.Component {
 
                         </div>
                         <div className="mt-3 col-md-4">
-                            <a href="#">
+                            <a onClick={() => this.routeToCategory("IND")}>
                                 <div className="card mb-4 shadow-sm">
                                     <h5> Industrials  </h5>
 
@@ -49,7 +56,7 @@ class HomePageClient extends React.Component {
 
                         </div>
                         <div className="mt-3 col-md-4">
-                            <a href="#">
+                            <a onClick={() => this.routeToCategory("CONDFEN")}>
                                 <div className="card mb-4 shadow-sm">
                                     <h5> Consumer Discretionary </h5>
 
@@ -58,7 +65,7 @@ class HomePageClient extends React.Component {
 
                         </div>
                         <div className="mt-3 col-md-4">
-                            <a href="#">
+                            <a onClick={() => this.routeToCategory("TEC")}>
                                 <div className="card mb-4 shadow-sm">
                                     <h5> Information Technology </h5>
 
@@ -66,7 +73,7 @@ class HomePageClient extends React.Component {
                             </a>
                         </div>
                         <div className="mt-3 col-md-4">
-                            <a href="#">
+                            <a onClick={() => this.routeToCategory("UTIL")} >
                                 <div className="card mb-4 shadow-sm">
                                     <h5> Utilities  </h5>
 
@@ -75,7 +82,7 @@ class HomePageClient extends React.Component {
 
                         </div>
                         <div className="mt-3 col-md-4">
-                            <a href="#">
+                            <a onClick={() => this.routeToCategory("FINAN")} >
                                 <div className="card mb-4 shadow-sm">
                                     <h5> Financial </h5>
                                    

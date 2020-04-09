@@ -1,7 +1,8 @@
 #bgVideo {
-    position: relative;
+    position: fixed;
     right: 0;
     bottom: 0;
+    /*z-index: -5;*/
     min-width: 100%;
     min-height: 100%;
 }
@@ -16,10 +17,9 @@
     margin-bottom: 200px;
 }
 
-#access{
-    margin-top: 200px;
-    top: 200px;
-}
+/*#access{*/
+/*    margin: auto;*/
+/*}*/
 
 .btn{
     z-index: 10;
@@ -32,4 +32,9 @@
 .btn:hover {
     background: #ddd;
     color: black;
+}
+
+.overlay{
+    position: relative;
+    margin-top: 20%;
 }
