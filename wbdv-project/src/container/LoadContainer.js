@@ -15,6 +15,7 @@ import Category6Component from '../front/category/category6.template.client'
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import LandingPageContainer from "../front/landing/landing.template.client";
 import CategoryComponent from "../front/category/CategoryComponent";
+import SearchClientComponent from "../front/search/SearchClientComponent";
 
 
 class LoadContainer extends React.Component{
@@ -28,7 +29,9 @@ class LoadContainer extends React.Component{
                 <Route
                     path="/research"
                     exact={true}
-                    component = {LandingPageContainer}/>
+                    component = {SearchTemplateClient
+                    //props={this.props}
+                    }/>
                 <Route
                     path="/login"
                     exact={true}

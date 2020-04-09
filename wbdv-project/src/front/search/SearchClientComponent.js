@@ -20,7 +20,7 @@ class SearchClientComponent extends React.Component {
         const initstock = await this.props.initGainer()
         const initstock2 = await this.props.initLoser()
 
-        fetch(`http://localhost:8080/profile`, {
+        fetch(`https://infinite-retreat-10652.herokuapp.com/profile`, {
             method: 'POST',
             credentials: "include"
         }).then(reseponse => reseponse.json()).then(profile => this.setState({
@@ -42,7 +42,7 @@ class SearchClientComponent extends React.Component {
     }
 
     logout = () => {
-        fetch(`http://localhost:8080/logout`, {
+        fetch(`https://infinite-retreat-10652.herokuapp.com/logout`, {
             method: 'POST',
             credentials: "include"
         })
@@ -186,6 +186,7 @@ const dispatcherToPropertyMapper = (dispatcher) => ({
     initLoser: async () =>
         fetch('https://financialmodelingprep.com/api/v3/stock/losers')
             .then(response => response.json())
+    
 })
 
 export default connect(
