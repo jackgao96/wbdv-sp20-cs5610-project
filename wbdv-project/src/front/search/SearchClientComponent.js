@@ -145,16 +145,19 @@ class SearchClientComponent extends React.Component {
                             }
                         </div>
                     </div>
-                    {this.props.stock.price &&
+                    {this.props.stock.profile &&
                     <div className="container">
                         <div>
                             <h3 className="alert alert-info">
                                 Search Result
                             </h3>
                         </div>
-                        <p>Stock Name:{this.props.stock.symbol}</p>
-                        <p>Current Price:{this.props.stock.price}</p>
-                        <p>Recommendation: Strong Buy</p>
+                        <img src={this.props.stock.profile.image}/>
+                        <p><h5>Stock Name:</h5>{this.props.stock.symbol}</p>
+                        <p><h5>Company website:</h5><a href={this.props.stock.profile.website}>{this.props.stock.profile.website}</a></p>
+                        <p><h5>Current Price:</h5>{this.props.stock.profile.price}</p>
+                        <p><h5>Description:</h5>{this.props.stock.profile.description}</p>
+                        <p><h5>Recommendation:</h5> Strong Buy</p>
                     </div>
                     }
                 </div>
@@ -174,7 +177,7 @@ const stateToPropertyMapper = (state) => ({
 )
 const dispatcherToPropertyMapper = (dispatcher) => ({
     searchStock: stockid =>
-        fetch('https://financialmodelingprep.com/api/v3/stock/real-time-price/' + stockid)
+        fetch('https://financialmodelingprep.com/api/v3/company/profile/' + stockid)
             .then(response => response.json())
             .then(stock => dispatcher({
                 type: 'SEARCH_STOCK',
@@ -186,7 +189,7 @@ const dispatcherToPropertyMapper = (dispatcher) => ({
     initLoser: async () =>
         fetch('https://financialmodelingprep.com/api/v3/stock/losers')
             .then(response => response.json())
-    
+
 })
 
 export default connect(
