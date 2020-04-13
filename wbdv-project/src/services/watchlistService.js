@@ -1,4 +1,4 @@
-class UserService{
+class WatchlistService{
     getWatchlistForUser = (userId) => {
         return fetch(`https://localhost:8080/api/users/${userId}/watchlists`, {
             method: "GET",
@@ -18,4 +18,4 @@ class UserService{
         }).then(response => response.json())
     }
 }
-export default UserService;
+export default WatchlistService;
