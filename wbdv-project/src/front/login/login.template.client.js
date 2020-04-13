@@ -8,15 +8,15 @@ class LoginPageClient extends React.Component {
     }
 
     handleLogin = (user) => {
-        fetch(`https://infinite-retreat-10652.herokuapp.comlogin`, {
+        fetch(`http://localhost:8080/login`, {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
             },
             credentials: "include"
-        }).then(response => response.json()).then(currentUser => this.props.history.push('/home'))
-        this.props.history.push('/home')
+        }).then(response => console.log(response.json())).then(currentUser => this.props.history.push('/home'))
+        // this.props.history.push('/home')
     }
 
     render() {
