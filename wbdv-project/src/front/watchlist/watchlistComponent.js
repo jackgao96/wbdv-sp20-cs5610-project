@@ -2,6 +2,7 @@ import React from "react";
 import './watchlistTableComponent'
 import watchlistTableComponent from "./watchlistTableComponent";
 import watchlistService from "../../services/watchlistService";
+import stockService from "../../services/StockService"
 
 
 class watchlistComponent extends React.Component {
@@ -10,6 +11,7 @@ class watchlistComponent extends React.Component {
         this.props = props;
         this.userId = this.props.match.params.userId;
         this.watchlistService = new watchlistService();
+        this.stockService = new stockService();
     }
     state = {
         watchlist : []
@@ -24,7 +26,10 @@ class watchlistComponent extends React.Component {
     }
 
     removeFromWatchlist = async (stock) => {
-
+        this.stockService.removeStockFromWatchlist(stock).
+            then(this.setState(
+                this.state.watchlist = this.watchlistService.getWatchlistForUser(this.userId)
+        ))
     }
 
     render() {
