@@ -1,5 +1,6 @@
 import {connect, Provider} from "react-redux";
 import React from "react";
+import SearchDetail from "./SearchDetail";
 
 class SearchClientComponent extends React.Component {
     state = {
@@ -126,13 +127,7 @@ class SearchClientComponent extends React.Component {
                         </div>}
                         {this.state.viewdetail == 1 &&
                         <div>
-                            <img src={this.props.stock.profile.image}/>
-                            <p><h5>Stock Name:</h5>{this.props.stock.profile.companyName}</p>
-                            <p><h5>Company website:</h5><a
-                                href={this.props.stock.profile.website}>{this.props.stock.profile.website}</a></p>
-                            <p><h5>Current Price:</h5>{this.props.stock.profile.price}</p>
-                            <p><h5>Description:</h5>{this.props.stock.profile.description}</p>
-                            <p><h5>Recommendation:</h5> Strong Buy</p>
+                            <SearchDetail stock={this.props.stock}></SearchDetail>
                             <button
                                 className="btn bg-info btn-rounded my-0" type="submit"
                                 onClick={() =>
@@ -144,7 +139,6 @@ class SearchClientComponent extends React.Component {
                             </button>
                         </div>
                         }
-
                     </div>
                     }
                 </div>
