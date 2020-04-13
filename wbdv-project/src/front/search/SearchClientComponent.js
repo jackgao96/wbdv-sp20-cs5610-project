@@ -13,7 +13,8 @@ class SearchClientComponent extends React.Component {
             lastName: '',
             email: '',
             roles: []
-        }
+        },
+        viewdetail: 0
     }
 
     componentDidMount = async () => {
@@ -68,7 +69,7 @@ class SearchClientComponent extends React.Component {
                         <hr/>
                         <div class=" pull-right">
                             <button
-                                onClick={()=>{
+                                onClick={() => {
 
                                     this.logout()
                                     this.props.history.push('/home')
@@ -103,14 +104,57 @@ class SearchClientComponent extends React.Component {
                             </button>
                         </div>
                     </div>
-                    <div class="row">
+                    {this.props.stock.profile &&
+                    <div className="container">
+                        <div>
+                            <h3 className="alert alert-info">
+                                Search Result
+                            </h3>
+                        </div>
+                        {this.state.viewdetail == 0 &&
+                        <div>
+                            <p><h5>Stock Name:</h5>{this.props.stock.profile.companyName}</p>
+                            <button
+                                class="btn bg-info btn-rounded my-0" type="submit"
+                                onClick={() =>
+                                    this.setState({
+                                        viewdetail: 1
+                                    })
+                                }
+                            >Show Details
+                            </button>
+                        </div>}
+                        {this.state.viewdetail == 1 &&
+                        <div>
+                            <img src={this.props.stock.profile.image}/>
+                            <p><h5>Stock Name:</h5>{this.props.stock.profile.companyName}</p>
+                            <p><h5>Company website:</h5><a
+                                href={this.props.stock.profile.website}>{this.props.stock.profile.website}</a></p>
+                            <p><h5>Current Price:</h5>{this.props.stock.profile.price}</p>
+                            <p><h5>Description:</h5>{this.props.stock.profile.description}</p>
+                            <p><h5>Recommendation:</h5> Strong Buy</p>
+                            <button
+                                className="btn bg-info btn-rounded my-0" type="submit"
+                                onClick={() =>
+                                    this.setState({
+                                        viewdetail: 0
+                                    })
+                                }
+                            >Hide Details
+                            </button>
+                        </div>
+                        }
+
+                    </div>
+                    }
+                </div>
+                    <div class="row container">
                         <div class="col-sm-6">
                             <h3 class="alert alert-success">
                                 Today's Top Gainer
                             </h3>
 
                             {
-                                //console.log(this.state.initstock.mostGainerStock)
                                 this.state.gainstock.mostGainerStock && this.state.gainstock.mostGainerStock.map(itstock =>
                                     <div className="row container">
                                         <h5>Name:</h5> {itstock.companyName}
@@ -121,7 +165,6 @@ class SearchClientComponent extends React.Component {
                                         {itstock.price}
                                     </div>
                                 )
-                                //console.log(this.props.initstock)
                             }
                         </div>
                         <div class={"col-sm-6"}>
@@ -141,26 +184,10 @@ class SearchClientComponent extends React.Component {
                                         {itstock.price}
                                     </div>
                                 )
-                                //console.log(this.props.initstock)
                             }
                         </div>
                     </div>
-                    {this.props.stock.profile &&
-                    <div className="container">
-                        <div>
-                            <h3 className="alert alert-info">
-                                Search Result
-                            </h3>
-                        </div>
-                        <img src={this.props.stock.profile.image}/>
-                        <p><h5>Stock Name:</h5>{this.props.stock.symbol}</p>
-                        <p><h5>Company website:</h5><a href={this.props.stock.profile.website}>{this.props.stock.profile.website}</a></p>
-                        <p><h5>Current Price:</h5>{this.props.stock.profile.price}</p>
-                        <p><h5>Description:</h5>{this.props.stock.profile.description}</p>
-                        <p><h5>Recommendation:</h5> Strong Buy</p>
-                    </div>
-                    }
-                </div>
+
             </div>
 
         )
