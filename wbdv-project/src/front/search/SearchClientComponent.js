@@ -23,7 +23,7 @@ class SearchClientComponent extends React.Component {
         const initstock2 = await this.props.initLoser()
 
         fetch(`https://infinite-retreat-10652.herokuapp.com/profile`, {
-            method: 'POST',
+            method: 'GET',
             credentials: "include"
         }).then(reseponse => reseponse.json()).then(profile => this.setState({
             profile: profile
@@ -68,7 +68,7 @@ class SearchClientComponent extends React.Component {
                     </div>
                     <div class="row">
                         <hr/>
-                        <div class=" pull-right">
+                        <div class="pull-right">
                             <button
                                 onClick={() => {
 
