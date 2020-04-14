@@ -28,6 +28,7 @@ class LoginPageClient extends React.Component {
             },
             credentials: "include"
         }).then(response => console.log(response.json())).then(currentUser => this.props.history.push('/home'))
+        this.props.history.push('/admin')
     }
 
     render() {

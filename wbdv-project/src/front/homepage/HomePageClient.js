@@ -1,6 +1,23 @@
 import React from "react";
 import {Link} from "react-router-dom";
 class HomePageClient extends React.Component {
+
+    state = {
+        profile:{
+        }
+    }
+
+    componentDidMount = async () => {
+        fetch(`https://infinite-retreat-10652.herokuapp.com/profile`, {
+            method: 'GET',
+            credentials: "include"
+        }).then(reseponse => reseponse.json()).then(profile => this.setState({
+            profile: profile
+        })).then(status => console.log(this.state.profile))
+
+        console.log(this.state.profile)
+    }
+
     constructor(params) {
         super(params);
         this.params = params

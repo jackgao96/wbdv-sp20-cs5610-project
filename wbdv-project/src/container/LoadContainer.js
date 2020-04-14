@@ -7,6 +7,7 @@ import RegisterPageClient from '../front/register/register.template.client'
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import LandingPageContainer from "../front/landing/landing.template.client";
 import CategoryComponent from "../front/category/CategoryComponent";
+import AdminComponent from "../front/admin/AdminComponent"
 import SearchClientComponent from "../front/search/SearchClientComponent";
 
 
@@ -42,6 +43,11 @@ class LoadContainer extends React.Component {
                     path="/category/:catName"
                     exact={true}
                     component={CategoryComponent}
+                />
+                <Route
+                    path="/admin"
+                    exact={true}
+                    component={AdminComponent}
                 />
 
             </Router>
