@@ -1,15 +1,16 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-
+let date = new Date()
 class RegisterPageClient extends React.Component {
     state = {
         username: '',
         password: '',
         verifiPassword: '',
-        email:''
+        email:'',
+        registertime:date
     }
     register = (user) => {
-        if (this.state.password===this.state.verifiPassword){
+        if (this.state.password!=''&&this.state.password===this.state.verifiPassword){
             fetch('https://infinite-retreat-10652.herokuapp.com/api/users', {
                 method: "POST",
                 body: JSON.stringify(user),

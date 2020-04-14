@@ -6,6 +6,22 @@ export default class AdminComponent extends React.Component {
         users: [],
         profile: {}
     }
+    DeleteUser = async (userid) => {
+        fetch(`https://infinite-retreat-10652.herokuapp.com/api/users/` + userid, {
+            method: 'DELETE',
+            credentials: "include"
+        }).then(status => console.log(this.state.profile))
+            .then(result=>fetch(`https://infinite-retreat-10652.herokuapp.com/api/users`, {
+            method: 'GET',
+            credentials: "include"
+        })).then(reseponse => reseponse.json()).then(users => this.setState({
+            users: users
+        })).then(status => console.log(this.state.profile))
+        //this.props.history.push('/admin')
+
+    }
+
+
     componentDidMount = async () => {
 
         fetch(`https://infinite-retreat-10652.herokuapp.com/profile`, {
@@ -61,6 +77,16 @@ export default class AdminComponent extends React.Component {
                                 <td>
                                     {user.email}
                                 </td>
+                                <td>
+                                    <button
+                                         class="btn btn-danger my-0"
+                                        onClick={() => {
+                                            this.DeleteUser(user.id)
+                                        }
+                                        }>
+                                        Delete
+                                    </button>
+                                </td>
                             </tr>
                         )
                     }
@@ -92,6 +118,7 @@ export default class AdminComponent extends React.Component {
                                 <td>
                                     {stock.recommendation}
                                 </td>
+
                             </tr>
                         )
                     }
