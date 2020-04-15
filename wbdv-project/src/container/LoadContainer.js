@@ -9,6 +9,7 @@ import LandingPageContainer from "../front/landing/landing.template.client";
 import CategoryComponent from "../front/category/CategoryComponent";
 import AdminComponent from "../front/admin/AdminComponent"
 import SearchClientComponent from "../front/search/SearchClientComponent";
+import WatchlistComponent from '../front/watchlist/WatchlistComponent';
 
 
 class LoadContainer extends React.Component {
@@ -49,6 +50,11 @@ class LoadContainer extends React.Component {
                     exact={true}
                     component={AdminComponent}
                 />
+                <Route
+                    path="/watchlist"
+                    exact={true}
+                    component={WatchlistComponent}>
+                </Route>
 
             </Router>
 

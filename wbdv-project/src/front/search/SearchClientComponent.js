@@ -8,6 +8,7 @@ class SearchClientComponent extends React.Component {
         gainstock: [],
         losestock: [],
         profile: {
+            id:'',
             username: '',
             password: '',
             firstName: '',
@@ -21,7 +22,6 @@ class SearchClientComponent extends React.Component {
     componentDidMount = async () => {
         const initstock = await this.props.initGainer()
         const initstock2 = await this.props.initLoser()
-
         fetch(`https://infinite-retreat-10652.herokuapp.com/profile`, {
             method: 'GET',
             credentials: "include"
@@ -62,13 +62,13 @@ class SearchClientComponent extends React.Component {
                 </div>
                 <div className="container">
                     <h1>self-research</h1>
-                    <div class="row">
+                    <div className="row">
                         <hr/>
                         Hi {this.state.profile.username}!
                     </div>
-                    <div class="row">
+                    <div className="row">
                         <hr/>
-                        <div class="pull-right">
+                        <div className="pull-right">
                             <button
                                 onClick={() => {
 
@@ -82,7 +82,7 @@ class SearchClientComponent extends React.Component {
                             </button>
                         </div>
                     </div>
-                    <div class="input-group-prepend">
+                    <div className="input-group-prepend">
                         <input type="text" className="form-control" placeholder="Search the Stock"
                                onChange={(e) => {
                                    const newStock = e.target.value
@@ -92,7 +92,7 @@ class SearchClientComponent extends React.Component {
                                }}
                                value={this.state.stockname}/>
                         <div className="input-group-prepend">
-                            <button class="btn bg-info btn-rounded my-0" type="submit"
+                            <button className="btn bg-info btn-rounded my-0" type="submit"
                                     onClick={() => {
                                         this.props.searchStock(this.state.stockname)
                                             .then(() =>
@@ -116,7 +116,7 @@ class SearchClientComponent extends React.Component {
                         <div>
                             <p><h5>Stock Name:</h5>{this.props.stock.profile.companyName}</p>
                             <button
-                                class="btn bg-info btn-rounded my-0" type="submit"
+                                className="btn bg-info btn-rounded my-0" type="submit"
                                 onClick={() =>
                                     this.setState({
                                         viewdetail: 1
@@ -142,9 +142,9 @@ class SearchClientComponent extends React.Component {
                     </div>
                     }
                 </div>
-                    <div class="row container">
-                        <div class="col-sm-6">
-                            <h3 class="alert alert-success">
+                    <div className="row container">
+                        <div className="col-sm-6">
+                            <h3 className="alert alert-success">
                                 Today's Top Gainer
                             </h3>
 
@@ -161,7 +161,7 @@ class SearchClientComponent extends React.Component {
                                 )
                             }
                         </div>
-                        <div class={"col-sm-6"}>
+                        <div className={"col-sm-6"}>
                             <h3 className="alert alert-danger">
                                 Today's Top Loser
                             </h3>

@@ -1,7 +1,7 @@
 import React from "react";
 
-const watchlistTableRow = ({stock, removeFromWatchlist}) =>
-    <React.Fragment>
+const WatchlistTableRow = ({stock, removeFromWatchlist}) =>
+    <div>
         <table className = "table">
             <tdead className = "tdead-light ">
                 <tr className='row'>
@@ -15,6 +15,6 @@ const watchlistTableRow = ({stock, removeFromWatchlist}) =>
                 </tr>
             </tdead>
         </table>
-    </React.Fragment>
-export default watchlistTableRow
+    </div>
+export default WatchlistTableRow
 

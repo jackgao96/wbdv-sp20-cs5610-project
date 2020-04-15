@@ -1,22 +1,20 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import UserService from '../../services/UserService';
 
 class LoginPageClient extends React.Component {
-    state = {
-        user:{username: '',
-            password: ''},
-        usertype:"1"
+    constructor(props) {
+        super(props);
+        this.state = {
+            user:{username: '',
+                password: ''},
+            usertype:"1"
+        }
+        this.UserService = new UserService();
     }
 
     handleLogin = (user) => {
-        fetch(`https://infinite-retreat-10652.herokuapp.com/login`, {
-            method: 'POST',
-            body: JSON.stringify(user),
-            headers: {
-                'content-type': 'application/json'
-            },
-            credentials: "include"
-        }).then(response => console.log(response.json())).then(currentUser => this.props.history.push('/home'))
+        this.UserService.login(user).then(currentUser => this.props.history.push('/home'))
          this.props.history.push('/home')
     }
     AdminLogin = (user) => {

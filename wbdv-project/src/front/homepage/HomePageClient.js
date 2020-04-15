@@ -1,26 +1,34 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import UserService from '../../services/UserService'
 class HomePageClient extends React.Component {
-
-    state = {
-        profile:{
+    constructor(props) {
+        super(props);
+        this.state = {
+            profile:{
+            },
+            session:false
         }
+        this.UserService = new UserService();
     }
 
     componentDidMount = async () => {
-        fetch(`https://infinite-retreat-10652.herokuapp.com/profile`, {
-            method: 'GET',
-            credentials: "include"
-        }).then(reseponse => reseponse.json()).then(profile => this.setState({
-            profile: profile
-        })).then(status => console.log(this.state.profile))
-
+        const profile = await this.UserService.getSession()
+        if(profile.username !== "PLEASE LOGIN FIRST"){
+            this.setState({
+                profile: profile,
+                session:true
+            })
+        }
         console.log(this.state.profile)
     }
-
-    constructor(params) {
-        super(params);
-        this.params = params
+    logout(){
+        this.UserService.logout();
+        
+        this.setState({
+            profile:{},
+            session:false
+        })
     }
     routeToCategory = (catName) => {
       this.props.history.push("/category/"+catName)
@@ -35,23 +43,33 @@ class HomePageClient extends React.Component {
                     <a> About </a>
                 </div>
                 <div
-                    className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-                    <nav className="my-0 mr-md-auto font-weight-normal">
+                    className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
+                        
+                        <form className="form-inline">
                         <Link to="/">
-                            home
+                            <button className="btn btn-outline-dark">home</button>
                         </Link>
-                        <a className="p-2 text-dark" href="#"> watch list </a>
+                        <Link to="/watchlist">
+                            <button className="btn btn-outline-dark">watch-list</button>
+                        </Link>
                         <Link to="/research">
-                            self-research
+                            <button className="btn btn-outline-dark">self-research></button>
                         </Link>
-                    </nav>
-
-                    <Link className="btn btn-outline-primary" to="/login">
-                        Log in
-                    </Link>
-                    <Link className="btn btn-outline-primary" to="/register">
-                        Sign up
-                    </Link>
+                        <div hidden={this.state.session}>
+                        <Link className="" to="/login">
+                            <button className="btn btn-outline-primary">Log in</button>
+                        </Link>
+                        </div>
+                        <div hidden={this.state.session}>
+                        <Link to="/register">
+                            <button className="btn btn-outline-primary">Sign up</button>
+                        </Link>
+                        </div>
+                        <div hidden={!this.state.session}>
+                            <button className="btn btn-outline-primary" onClick={()=>this.logout()}>Log out</button>
+                        </div>
+                        </form>
+                    
                 </div>
                 <div className="container">
                     <div className=" row">
