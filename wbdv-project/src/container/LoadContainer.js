@@ -10,6 +10,7 @@ import CategoryComponent from "../front/category/CategoryComponent";
 import AdminComponent from "../front/admin/AdminComponent"
 import SearchClientComponent from "../front/search/SearchClientComponent";
 import WatchlistComponent from '../front/watchlist/WatchlistComponent';
+import ProfilePageClient from '../front/profile/profile.template.client';
 
 
 class LoadContainer extends React.Component {
@@ -54,6 +55,11 @@ class LoadContainer extends React.Component {
                     path="/watchlist"
                     exact={true}
                     component={WatchlistComponent}>
+                </Route>
+                <Route
+                    path="/profile"
+                    exact={true}
+                    component={ProfilePageClient}>
                 </Route>
 
             </Router>

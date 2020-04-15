@@ -28,7 +28,7 @@ class CategoryComponent extends React.Component {
         this.stockService.addStockToWatchlist(stock).then(this.setState(prevState => ({
             watchList: [...prevState.watchList, stock]
         })))
-        alert(stock.getName() + " added to watchlist!")
+        
     }
 
     render() {
