@@ -12,6 +12,7 @@ class CategoryComponent extends React.Component {
     }
 
     state = {
+        watchList:[],
         catStocks: []
     }
 

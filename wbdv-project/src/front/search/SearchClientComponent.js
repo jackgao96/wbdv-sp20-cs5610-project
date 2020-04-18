@@ -24,17 +24,17 @@ class SearchClientComponent extends React.Component {
             viewdetail: 0,
             session:false
         }
-        this.UserService = new UserService();
-        this.AdminService = new AdminService();
-        this.StockService = new StockService();
+        //this.UserService = new UserService();
+        //this.AdminService = new AdminService();
+        //this.StockService = new StockService();
     }
     addToWatchlist(wid,stock){
-        this.StockService.addStockToWatchlist(wid,stock)
+        StockService.addStockToWatchlist(wid,stock)
         alert("Add Successful!")
     }
     logout(){
         //this.UserService.logout();
-        this.AdminService.logout();
+        AdminService.logout();
         this.setState({
             profile:{},
         })
