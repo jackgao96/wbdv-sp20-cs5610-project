@@ -1,5 +1,5 @@
 import React from "react";
-import WatchlistTableRow from './WatchlistTableRow'
+import WatchlistTableRow from './watchlistTableRow'
 
 class WatchlistTableComponent extends React.Component {
     constructor(props) {

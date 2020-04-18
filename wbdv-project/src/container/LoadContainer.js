@@ -8,8 +8,7 @@ import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import LandingPageContainer from "../front/landing/landing.template.client";
 import CategoryComponent from "../front/category/CategoryComponent";
 import AdminComponent from "../front/admin/AdminComponent"
-import SearchClientComponent from "../front/search/SearchClientComponent";
-import WatchlistComponent from '../front/watchlist/WatchlistComponent';
+import WatchlistEditor from '../front/watchlist/WatchlistEditor';
 import ProfilePageClient from '../front/profile/profile.template.client';
 
 
@@ -54,14 +53,31 @@ class LoadContainer extends React.Component {
                 <Route
                     path="/watchlist"
                     exact={true}
-                    component={WatchlistComponent}>
+                    component={WatchlistEditor}>
                 </Route>
                 <Route
                     path="/profile"
                     exact={true}
                     component={ProfilePageClient}>
                 </Route>
-
+                <Route
+                    path="/watchlist/:wid"
+                    exact={true}
+                    render={(props) =>
+                        <WatchlistEditor
+                            {...props}
+                            watchlistId={props.match.params.wid}/>}>
+                </Route>
+                <Route 
+                    path="/watchlist/:wid/stock/:sid"
+                    exact={true}
+                    render={(props) =>
+                        <WatchlistEditor
+                            {...props}
+                            watchlistId={props.match.params.wid}
+                            stockId={props.match.params.sid}/>
+                    }>
+                </Route>
             </Router>
 
         )

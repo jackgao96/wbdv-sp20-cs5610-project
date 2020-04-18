@@ -1,12 +1,12 @@
-class UserService{
+class AdminService{
     getSession = async()=> {
-        return await fetch(`https://infinite-retreat-10652.herokuapp.com/profile`, {
+        return await fetch(`https://infinite-retreat-10652.herokuapp.com/admin/profile`, {
             method: 'GET',
             credentials: "include"
         }).then(reseponse => reseponse.json())
     }
-    login = async (user) => {
-        return await fetch(`https://infinite-retreat-10652.herokuapp.com/login`, {
+    login = async(user) => {
+        return await fetch(`https://infinite-retreat-10652.herokuapp.com/admin/login`, {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
@@ -21,4 +21,4 @@ class UserService{
         })
     }
 }
-export default UserService;
+export default AdminService;

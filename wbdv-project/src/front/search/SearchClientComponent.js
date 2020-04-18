@@ -1,6 +1,9 @@
 import {connect, Provider} from "react-redux";
 import React from "react";
 import SearchDetail from "./SearchDetail";
+import {Link} from "react-router-dom";
+import UserService from "../../services/UserService";
+import AdminService from "../../services/AdminService";
 
 class SearchClientComponent extends React.Component {
     state = {
@@ -16,17 +19,35 @@ class SearchClientComponent extends React.Component {
             email: '',
             roles: []
         },
-        viewdetail: 0
+        admin:{},
+        viewdetail: 0,
+        session:false
     }
 
+    logout(){
+        UserService.logout();
+        AdminService.logout();
+        this.setState({
+            profile:{},
+            admin:{}
+        })
+    }
     componentDidMount = async () => {
         const initstock = await this.props.initGainer()
         const initstock2 = await this.props.initLoser()
+
         fetch(`https://infinite-retreat-10652.herokuapp.com/profile`, {
             method: 'GET',
             credentials: "include"
         }).then(reseponse => reseponse.json()).then(profile => this.setState({
             profile: profile
+        })).then(status => console.log(this.state.profile))
+
+        fetch(`https://infinite-retreat-10652.herokuapp.com/admin/profile`, {
+            method: 'GET',
+            credentials: "include"
+        }).then(reseponse => reseponse.json()).then(profile => this.setState({
+            admin: profile
         })).then(status => console.log(this.state.profile))
 
         this.setState({
@@ -56,15 +77,53 @@ class SearchClientComponent extends React.Component {
         return (
             <div>
                 <div className="container">
-                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                        <a className="navbar-brand" href="/home">Navbar with our cool logo</a>
-                    </nav>
+                    <div
+                        className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+                        <h5 className="my-0 mr-md-auto font-weight-normal"> Logo Here </h5>
+                        <img src=""/>
+                        <a> About </a>
+                    </div>
+                    <div
+                        className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
+
+                        <form className="form-inline">
+                            <Link to="/home">
+                                <button className="btn btn-outline-dark">home</button>
+                            </Link>
+                            <Link to="/watchlist">
+                                <button className="btn btn-outline-dark">watch-list</button>
+                            </Link>
+                            <Link to="/research">
+                                <button className="btn btn-outline-dark">self-research</button>
+                            </Link>
+                            <div hidden={this.state.profile.username}>
+                                <Link className="" to="/login">
+                                    <button className="btn btn-outline-primary">Log in</button>
+                                </Link>
+                            </div>
+
+                                <Link to="/register">
+                                    <button className="btn btn-outline-primary">Sign up</button>
+                                </Link>
+
+                            <div hidden={!this.state.profile.username}>
+                                <button className="btn btn-outline-primary" onClick={()=>this.logout()}>Log out</button>
+                            </div>
+                            <div hidden={!this.state.profile.username}>
+                                <Link to="/profile">
+                                    <button className="btn btn-outline-primary">Profile</button>
+                                </Link>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
                 <div className="container">
                     <h1>self-research</h1>
                     <div className="row">
                         <hr/>
-                        Hi {this.state.profile.username}!
+                        Hi {this.state.profile.username}
+                        {this.state.admin.username}!
                     </div>
                     <div className="row">
                         <hr/>

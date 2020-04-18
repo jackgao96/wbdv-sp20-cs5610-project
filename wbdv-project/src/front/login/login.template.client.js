@@ -11,13 +11,15 @@ class LoginPageClient extends React.Component {
             usertype:"1"
         }
         this.UserService = new UserService();
+        console.log(props)
     }
 
-    handleLogin = (user) => {
-        this.UserService.login(user).then(currentUser => this.props.history.push('/home'))
-         this.props.history.push('/home')
+    handleLogin = async (user) => {
+       return this.UserService.login(user)
+         //this.props.history.push('/home')
     }
-    AdminLogin = (user) => {
+    AdminLogin = async (user) => {
+        //alert('admin')
         fetch(`https://infinite-retreat-10652.herokuapp.com/admin/login`, {
             method: 'POST',
             body: JSON.stringify(user),
@@ -25,13 +27,53 @@ class LoginPageClient extends React.Component {
                 'content-type': 'application/json'
             },
             credentials: "include"
-        }).then(response => console.log(response.json())).then(currentUser => this.props.history.push('/home'))
-        this.props.history.push('/admin')
+        }).then(response => console.log(response.json()))
+
     }
 
     render() {
         return (
             <div className="container">
+                <div
+                    className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+                    <h5 className="my-0 mr-md-auto font-weight-normal"> Logo Here </h5>
+                    <img src=""/>
+                    <a> About </a>
+                </div>
+                <div
+                    className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
+
+                    <form className="form-inline">
+                        <Link to="/">
+                            <button className="btn btn-outline-dark">home</button>
+                        </Link>
+                        <Link to="/watchlist">
+                            <button className="btn btn-outline-dark">watch-list</button>
+                        </Link>
+                        <Link to="/research">
+                            <button className="btn btn-outline-dark">self-research</button>
+                        </Link>
+                        <div hidden={this.state.session}>
+                            <Link className="" to="/login">
+                                <button className="btn btn-outline-primary">Log in</button>
+                            </Link>
+                        </div>
+                        <div hidden={this.state.session}>
+                            <Link to="/register">
+                                <button className="btn btn-outline-primary">Sign up</button>
+                            </Link>
+                        </div>
+                        <div hidden={!this.state.session}>
+                            <button className="btn btn-outline-primary" onClick={()=>this.logout()}>Log out</button>
+                        </div>
+                        <div hidden={!this.state.session}>
+                            <Link to="/profile">
+                                <button className="btn btn-outline-primary">Profile</button>
+                            </Link>
+                        </div>
+                    </form>
+
+                </div>
                 <h1>Sign In</h1>
                 <form>
                     <div className="form-group row">
@@ -80,6 +122,7 @@ class LoginPageClient extends React.Component {
                                         }))
                                     }}
                                     value={this.state.usertype}
+
                             >
                                 <option selected value="1">User</option>
                                 <option value="2" >Admin</option>
@@ -90,6 +133,7 @@ class LoginPageClient extends React.Component {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
+                            <Link to="/home">
                             <button
                                 className="btn btn-primary btn-block wbdv-button wbdv-login"
                                 onClick={() => {
@@ -102,6 +146,7 @@ class LoginPageClient extends React.Component {
                                 }>
                                 Sign In
                             </button>
+                            </Link>
                             <div className="row">
                                 <div className="col-6">
                                     <a className="wbdv-link wbdv-forgot-password" href="#">Forgot Password?</a>
