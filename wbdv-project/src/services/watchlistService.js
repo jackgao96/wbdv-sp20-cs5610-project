@@ -1,4 +1,4 @@
-class WatchlistService{
+class watchlistService{
     getWatchlistForUser = async (userId) => {
         return await fetch(`https://infinite-retreat-10652.herokuapp.com/api/users/${userId}/watchlists`, {
             method: "GET",
@@ -33,4 +33,4 @@ class WatchlistService{
         }).then(response => response.json())
     }
 }
-export default WatchlistService;
+export default watchlistService;
