@@ -8,8 +8,8 @@ class StockService{
             }).then(response => response.json())
     }
 
-    addStockToWatchlist = (wid, stock) => {
-        return fetch(`https://infinite-retreat-10652.herokuapp.com/api/watchlists/${wid}/stocks`, {
+    addStockToWatchlist = async (wid, stock) => {
+        return await fetch(`https://infinite-retreat-10652.herokuapp.com/api/watchlists/${wid}/stocks`, {
             method: 'POST',
             body: JSON.stringify(stock),
             headers: {

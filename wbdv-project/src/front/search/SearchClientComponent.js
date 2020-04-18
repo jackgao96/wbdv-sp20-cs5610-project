@@ -4,32 +4,39 @@ import SearchDetail from "./SearchDetail";
 import {Link} from "react-router-dom";
 import UserService from "../../services/UserService";
 import AdminService from "../../services/AdminService";
-
+import StockService from "../../services/StockService";
 class SearchClientComponent extends React.Component {
-    state = {
-        stockname: '',
-        gainstock: [],
-        losestock: [],
-        profile: {
-            id:'',
-            username: '',
-            password: '',
-            firstName: '',
-            lastName: '',
-            email: '',
-            roles: []
-        },
-        admin:{},
-        viewdetail: 0,
-        session:false
+    constructor(props) {
+        super(props);
+        this.state = {
+            stockname: '',
+            gainstock: [],
+            losestock: [],
+            profile: {
+                id:'',
+                username: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                email: '',
+                roles: []
+            },
+            viewdetail: 0,
+            session:false
+        }
+        this.UserService = new UserService();
+        this.AdminService = new AdminService();
+        this.StockService = new StockService();
     }
-
+    addToWatchlist(wid,stock){
+        this.StockService.addStockToWatchlist(wid,stock)
+        alert("Add Successful!")
+    }
     logout(){
-        UserService.logout();
-        AdminService.logout();
+        //this.UserService.logout();
+        this.AdminService.logout();
         this.setState({
             profile:{},
-            admin:{}
         })
     }
     componentDidMount = async () => {
@@ -43,12 +50,6 @@ class SearchClientComponent extends React.Component {
             profile: profile
         })).then(status => console.log(this.state.profile))
 
-        fetch(`https://infinite-retreat-10652.herokuapp.com/admin/profile`, {
-            method: 'GET',
-            credentials: "include"
-        }).then(reseponse => reseponse.json()).then(profile => this.setState({
-            admin: profile
-        })).then(status => console.log(this.state.profile))
 
         this.setState({
             gainstock: initstock,
@@ -62,15 +63,6 @@ class SearchClientComponent extends React.Component {
         if (this.props.stock !== prevProps.stock) {
             this.setState({stock: this.props.stock})
         }
-    }
-
-    logout = () => {
-        fetch(`https://infinite-retreat-10652.herokuapp.com/logout`, {
-            method: 'POST',
-            credentials: "include"
-        })
-
-
     }
 
     render() {
@@ -122,8 +114,7 @@ class SearchClientComponent extends React.Component {
                     <h1>self-research</h1>
                     <div className="row">
                         <hr/>
-                        Hi {this.state.profile.username}
-                        {this.state.admin.username}!
+                        Hi {this.state.profile.username}!
                     </div>
                     <div className="input-group-prepend">
                         <input type="text" className="form-control" placeholder="Search the Stock"
@@ -168,15 +159,16 @@ class SearchClientComponent extends React.Component {
                                 }
                             >Show Details
                             </button>
-                            <button
-                                className="btn bg-info btn-rounded my-0" type="submit"
-                                onClick={() =>
-                                    this.setState({
-                                        viewdetail: 1
-                                    })
+                                {this.state.profile.watchlists.map(watchlist=>
+                                    <button
+                                        className="btn bg-info btn-rounded my-0" type="submit"
+                                        onClick={() =>
+                                            this.addToWatchlist(watchlist.id,{name:this.props.stock.profile.companyName,symbol:this.props.stock.symbol,category:this.props.stock.profile.sector,recommendation:'Strong Buy'})
+                                        }
+                                    >Add to Watchlist: {watchlist.title}
+                                    </button>
+                                )
                                 }
-                            >Add to Watchlist
-                            </button>
                             </div>
                         </div>}
                         {this.state.viewdetail == 1 &&
