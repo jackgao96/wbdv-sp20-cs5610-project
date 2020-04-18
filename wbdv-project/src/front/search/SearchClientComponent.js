@@ -125,22 +125,6 @@ class SearchClientComponent extends React.Component {
                         Hi {this.state.profile.username}
                         {this.state.admin.username}!
                     </div>
-                    <div className="row">
-                        <hr/>
-                        <div className="pull-right">
-                            <button
-                                onClick={() => {
-
-                                    this.logout()
-                                    this.props.history.push('/home')
-
-                                }}
-
-                                className={`btn btn-danger`}>
-                                Logout
-                            </button>
-                        </div>
-                    </div>
                     <div className="input-group-prepend">
                         <input type="text" className="form-control" placeholder="Search the Stock"
                                onChange={(e) => {
@@ -174,6 +158,7 @@ class SearchClientComponent extends React.Component {
                         {this.state.viewdetail == 0 &&
                         <div>
                             <p><h5>Stock Name:</h5>{this.props.stock.profile.companyName}</p>
+                            <div class="row">
                             <button
                                 className="btn bg-info btn-rounded my-0" type="submit"
                                 onClick={() =>
@@ -183,6 +168,16 @@ class SearchClientComponent extends React.Component {
                                 }
                             >Show Details
                             </button>
+                            <button
+                                className="btn bg-info btn-rounded my-0" type="submit"
+                                onClick={() =>
+                                    this.setState({
+                                        viewdetail: 1
+                                    })
+                                }
+                            >Add to Watchlist
+                            </button>
+                            </div>
                         </div>}
                         {this.state.viewdetail == 1 &&
                         <div>
