@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import service from '../services/WatchlistService'
 import {findWatchlistsForUser, createWatchlist, deleteWatchlist, updateWatchlist} from '../actions/WatchlistActions'
-import WatchlistComponent from '../front/watchlist/watchlistComponent'
+import WatchlistComponent from '../front/watchlist/WatchlistComponent'
 
 const smap = (state) => ({
     watchlists: state.watchlists.watchlists

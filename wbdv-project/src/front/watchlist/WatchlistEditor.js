@@ -6,6 +6,7 @@ import StockReducer from './StockReducer'
 import {Link} from "react-router-dom";
 import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
+import StockTabContainer from "../../container/StockTabContainer";
 
 const rootReducer = combineReducers({
     watchlists: WatchlistReducer,
@@ -89,6 +90,11 @@ class WatchlistEditor extends React.Component {
                             history={this.props.history}/>
                     </div>
                     <div className="col-8">
+                        <StockTabContainer
+                            uid={this.state.profile.id}
+                            wid={this.props.watchlistId}
+                            sid={this.props.stockId}
+                            history={this.props.history}/>
                     </div>
                 </div>
                 }

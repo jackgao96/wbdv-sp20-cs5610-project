@@ -7,7 +7,7 @@ class WatchlistComponent extends React.Component {
         this.state = {
             newListTitle: "New Watchlist",
             editingwid: '',
-            activewid: '',
+            activewid: this.props.wid,
             watchlist: {title: ''},
             currID: ''
         }
@@ -47,7 +47,7 @@ class WatchlistComponent extends React.Component {
                             </button>
                         </div>
                     </div>
-                                
+                    {console.log(this.state.activewid)}
                     {!this.props.watchlists &&
                         <h2>No Watchlist Created yet!</h2>
                     }
