@@ -14,15 +14,9 @@ class LoginPageClient extends React.Component {
         console.log(props)
     }
 
-<<<<<<< HEAD
-    handleLogin = (user) => {
-        this.UserService.login(user).then(currentUser => this.props.history.push('/home'))
-        this.props.history.push('/home')
-=======
     handleLogin = async (user) => {
        return this.UserService.login(user)
          //this.props.history.push('/home')
->>>>>>> 41e00c0ec4ffaa367f5330a94abce1671f17cb9b
     }
     AdminLogin = async (user) => {
         //alert('admin')
