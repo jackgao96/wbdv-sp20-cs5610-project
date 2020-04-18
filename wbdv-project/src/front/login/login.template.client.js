@@ -47,9 +47,6 @@ class LoginPageClient extends React.Component {
                         <Link to="/">
                             <button className="btn btn-outline-dark">home</button>
                         </Link>
-                        <Link to="/watchlist">
-                            <button className="btn btn-outline-dark">watch-list</button>
-                        </Link>
                         <Link to="/research">
                             <button className="btn btn-outline-dark">self-research</button>
                         </Link>
@@ -61,14 +58,6 @@ class LoginPageClient extends React.Component {
                         <div hidden={this.state.session}>
                             <Link to="/register">
                                 <button className="btn btn-outline-primary">Sign up</button>
-                            </Link>
-                        </div>
-                        <div hidden={!this.state.session}>
-                            <button className="btn btn-outline-primary" onClick={()=>this.logout()}>Log out</button>
-                        </div>
-                        <div hidden={!this.state.session}>
-                            <Link to="/profile">
-                                <button className="btn btn-outline-primary">Profile</button>
                             </Link>
                         </div>
                     </form>

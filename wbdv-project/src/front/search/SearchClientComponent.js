@@ -96,20 +96,20 @@ class SearchClientComponent extends React.Component {
                             <Link to="/research">
                                 <button className="btn btn-outline-dark">self-research</button>
                             </Link>
-                            <div hidden={this.state.profile.username}>
+                            <div hidden={this.state.profile.password}>
                                 <Link className="" to="/login">
                                     <button className="btn btn-outline-primary">Log in</button>
                                 </Link>
                             </div>
-
+                            <div hidden={this.state.profile.password}>
                                 <Link to="/register">
                                     <button className="btn btn-outline-primary">Sign up</button>
                                 </Link>
-
-                            <div hidden={!this.state.profile.username}>
+                            </div>
+                            <div hidden={!this.state.profile.password}>
                                 <button className="btn btn-outline-primary" onClick={()=>this.logout()}>Log out</button>
                             </div>
-                            <div hidden={!this.state.profile.username}>
+                            <div hidden={!this.state.profile.password}>
                                 <Link to="/profile">
                                     <button className="btn btn-outline-primary">Profile</button>
                                 </Link>
@@ -124,22 +124,6 @@ class SearchClientComponent extends React.Component {
                         <hr/>
                         Hi {this.state.profile.username}
                         {this.state.admin.username}!
-                    </div>
-                    <div className="row">
-                        <hr/>
-                        <div className="pull-right">
-                            <button
-                                onClick={() => {
-
-                                    this.logout()
-                                    this.props.history.push('/home')
-
-                                }}
-
-                                className={`btn btn-danger`}>
-                                Logout
-                            </button>
-                        </div>
                     </div>
                     <div className="input-group-prepend">
                         <input type="text" className="form-control" placeholder="Search the Stock"
@@ -174,6 +158,7 @@ class SearchClientComponent extends React.Component {
                         {this.state.viewdetail == 0 &&
                         <div>
                             <p><h5>Stock Name:</h5>{this.props.stock.profile.companyName}</p>
+                            <div class="row">
                             <button
                                 className="btn bg-info btn-rounded my-0" type="submit"
                                 onClick={() =>
@@ -183,6 +168,16 @@ class SearchClientComponent extends React.Component {
                                 }
                             >Show Details
                             </button>
+                            <button
+                                className="btn bg-info btn-rounded my-0" type="submit"
+                                onClick={() =>
+                                    this.setState({
+                                        viewdetail: 1
+                                    })
+                                }
+                            >Add to Watchlist
+                            </button>
+                            </div>
                         </div>}
                         {this.state.viewdetail == 1 &&
                         <div>

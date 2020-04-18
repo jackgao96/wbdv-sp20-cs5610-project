@@ -1,3 +1,4 @@
+
 export const getWatchlistForUser = async (userId) => {
     return await fetch(`https://infinite-retreat-10652.herokuapp.com/api/users/${userId}/watchlists`, {
         method: "GET",
@@ -46,3 +47,4 @@ export default {
     updateWatchlist,
     getWatchlistForUser
 }
+
