@@ -16,7 +16,7 @@ class WatchlistComponent extends React.Component {
         this.props.findWatchlistsForUser(this.props.uid)
     }
     componentDidUpdate(prevProps, prevState, snapshot){
-        if(prevProps.uid !== this.props.uid || prevProps!== this.state){
+        if(prevProps.uid !== this.props.uid){
             this.props.findWatchlistsForUser(this.props.uid)
         }
     }
@@ -62,15 +62,15 @@ class WatchlistComponent extends React.Component {
                                     key={watchlist.id}>
                                     <a className={`list-group-item
                                             ${(this.state.editingwid === watchlist.id || this.state.activewid === watchlist.id)?'active':''}`}>
-                                        {this.editingwid !== watchlist.id &&
+                                        {this.state.editingwid !== watchlist.id &&
                                             <span>{watchlist.title}</span>
                                         }
-                                        {this.editingwid === watchlist.id &&
+                                        {this.state.editingwid === watchlist.id &&
                                             <input 
                                                 onChange={(e)=>this.setState({watchlist:{title: e.target.value}})}
                                                 value={this.state.watchlist.title}/>
                                         }
-                                        {this.editingwid === watchlist.id &&
+                                        {this.state.editingwid === watchlist.id &&
                                             <button onClick={()=>{
                                                 this.props.updateWatchlist(this.state.currID, this.state.watchlist)
                                                     .then(()=>this.setState({editingwid:''}))
@@ -79,14 +79,14 @@ class WatchlistComponent extends React.Component {
                                                 <i className="fa fa-save"></i>
                                             </button>
                                         }
-                                        {this.editingwid === watchlist.id &&
+                                        {this.state.editingwid === watchlist.id &&
                                             <button onClick={
                                                 ()=>this.props.deleteWatchlist(watchlist.id)
                                             }>
                                                 <i className="fa fa-trash"></i>
                                             </button>
                                         }
-                                        {this.editingwid !== watchlist.id &&
+                                        {this.state.editingwid !== watchlist.id &&
                                             <button onClick={()=>{
                                                 const wid = watchlist.id
                                                 this.props.history.push(`/watchlist/${wid}`)
@@ -95,7 +95,6 @@ class WatchlistComponent extends React.Component {
                                                     currID: watchlist.id,
                                                     editingwid: watchlist.id
                                                 })
-            
                                                 console.log(watchlist.id)
                                                 console.log(this.state.editingwid)
                                                 console.log(this.state.editingwid===watchlist.id)

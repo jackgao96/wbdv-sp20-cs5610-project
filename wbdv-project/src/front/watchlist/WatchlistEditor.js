@@ -85,7 +85,7 @@ class WatchlistEditor extends React.Component {
                         <h4>{this.state.profile.username}'s Watchlist</h4>
                         <WatchlistContainer
                             uid={this.state.profile.id}
-                            
+                            wid={this.props.watchlistId}
                             history={this.props.history}/>
                     </div>
                     <div className="col-8">
