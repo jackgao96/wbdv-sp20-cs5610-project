@@ -87,15 +87,15 @@ class WatchlistComponent extends React.Component {
                                                 key={watchlist.id}>
                                                 <a className={`list-group-item
                                             ${(this.state.editingwid === watchlist.id || this.state.activewid === watchlist.id) ? 'active' : ''}`}>
-                                                    {this.editingwid !== watchlist.id &&
+                                                    {this.state.editingwid !== watchlist.id &&
                                                     <span>{watchlist.title}</span>
                                                     }
-                                                    {this.editingwid === watchlist.id &&
+                                                    {this.state.editingwid === watchlist.id &&
                                                     <input
                                                         onChange={(e) => this.setState({watchlist: {title: e.target.value}})}
                                                         value={this.state.watchlist.title}/>
                                                     }
-                                                    {this.editingwid === watchlist.id &&
+                                                    {this.state.editingwid === watchlist.id &&
                                                     <button onClick={() => {
                                                         this.props.updateWatchlist(this.state.currID, this.state.watchlist)
                                                             .then(() => this.setState({editingwid: ''}))
@@ -104,14 +104,14 @@ class WatchlistComponent extends React.Component {
                                                         <i className="fa fa-save"></i>
                                                     </button>
                                                     }
-                                                    {this.editingwid === watchlist.id &&
+                                                    {this.state.editingwid === watchlist.id &&
                                                     <button onClick={
                                                         () => this.props.deleteWatchlist(watchlist.id)
                                                     }>
                                                         <i className="fa fa-trash"></i>
                                                     </button>
                                                     }
-                                                    {this.editingwid !== watchlist.id &&
+                                                    {this.state.editingwid !== watchlist.id &&
                                                     <button onClick={() => {
                                                         const wid = watchlist.id
                                                         this.props.history.push(`/watchlist/${wid}`)
@@ -139,72 +139,6 @@ class WatchlistComponent extends React.Component {
                         </div>
                     </form>
                 </div>
-<<<<<<< HEAD
-                {!this.props.watchlists &&
-                    <h2>No Watchlist Created yet!</h2>
-                }
-                {this.props.watchlists &&
-                    <ul className="list-group">
-                        {
-                            this.props.watchlists.map(watchlist => 
-                                <li className="list-group-item" 
-                                    onClick={()=>{
-                                        const wid = watchlist.id
-                                        this.props.history.push(`/watchlist/${wid}`)
-                                        this.setState({activewid: watchlist.id})
-                                    }}
-                                    key={watchlist.id}>
-                                    <a className={`list-group-item
-                                            ${(this.state.editingwid === watchlist.id || this.state.activewid === watchlist.id)?'active':''}`}>
-                                        {this.state.editingwid !== watchlist.id &&
-                                            <span>{watchlist.title}</span>
-                                        }
-                                        {this.state.editingwid === watchlist.id &&
-                                            <input 
-                                                onChange={(e)=>this.setState({watchlist:{title: e.target.value}})}
-                                                value={this.state.watchlist.title}/>
-                                        }
-                                        {this.state.editingwid === watchlist.id &&
-                                            <button onClick={()=>{
-                                                this.props.updateWatchlist(this.state.currID, this.state.watchlist)
-                                                    .then(()=>this.setState({editingwid:''}))
-                                                this.forceUpdate()
-                                            }}>
-                                                <i className="fa fa-save"></i>
-                                            </button>
-                                        }
-                                        {this.state.editingwid === watchlist.id &&
-                                            <button onClick={
-                                                ()=>this.props.deleteWatchlist(watchlist.id)
-                                            }>
-                                                <i className="fa fa-trash"></i>
-                                            </button>
-                                        }
-                                        {this.state.editingwid !== watchlist.id &&
-                                            <button onClick={()=>{
-                                                const wid = watchlist.id
-                                                this.props.history.push(`/watchlist/${wid}`)
-                                                this.setState({
-                                                    watchlist: watchlist,
-                                                    currID: watchlist.id,
-                                                    editingwid: watchlist.id
-                                                })
-                                                console.log(watchlist.id)
-                                                console.log(this.state.editingwid)
-                                                console.log(this.state.editingwid===watchlist.id)
-                                            }}>
-                                                <i className="fa fa-pencil"></i>
-                                            </button>
-                                        }
-                                    </a>
-                                </li>
-                                )
-                        }
-                    </ul>
-                }
-                
-=======
->>>>>>> f9082ce30b6eb37d36331751450554bdb6286116
             </div>
         )
     }
