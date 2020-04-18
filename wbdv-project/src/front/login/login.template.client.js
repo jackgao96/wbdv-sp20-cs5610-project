@@ -15,7 +15,7 @@ class LoginPageClient extends React.Component {
 
     handleLogin = (user) => {
         this.UserService.login(user).then(currentUser => this.props.history.push('/home'))
-         this.props.history.push('/home')
+        this.props.history.push('/home')
     }
     AdminLogin = (user) => {
         fetch(`https://infinite-retreat-10652.herokuapp.com/admin/login`, {

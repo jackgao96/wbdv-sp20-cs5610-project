@@ -1,129 +1,115 @@
 import React from "react";
-import WatchlistTableComponent from "./WatchlistTableComponent";
-import WatchlistService from "../../services/WatchlistService";
-import StockService from "../../services/StockService";
-import UserService from "../../services/UserService";
-import {Link} from "react-router-dom";
+import '../../css/style.css'
 
 class WatchlistComponent extends React.Component {
-    constructor(props) {
+    constructor(props){
         super(props);
-        this.WatchlistService = new WatchlistService();
-        this.StockService = new StockService();
-        this.UserService = new UserService();
-        this.state={
-            watchlist : [],
-            profile: {
-                id:'',
-                username: '',
-                password: '',
-                firstName: '',
-                lastName: '',
-                email: '',
-                roles: []
-            },
-            newListTitle: 'Whatever',
-            session:false
+        this.state = {
+            newListTitle: "New Watchlist",
+            editingwid: '',
+            activewid: '',
+            watchlist: {title: ''},
+            currID: ''
         }
     }
-    logout(){
-        this.UserService.logout();
-        
-        this.setState({
-            profile:{},
-            session:false
-        })
+    componentWillMount(){
+        this.props.findWatchlistsForUser(this.props.uid)
     }
-    updateForm = (e) =>
-        this.setState({
-            newListTitle: e.target.value
-        })
-    addWatchlist = async () =>
-    {
-        const newWatchlist = {
-            title: this.state.newListTitle
-        }
-        console.log(newWatchlist)
-        const actualWatchlist = await this.WatchlistService.createWatchlist(this.state.profile.id,newWatchlist)
-        const allwatchlist = await this.WatchlistService.getWatchlistForUser(this.state.profile.id)
-        this.setState({
-            watchlist: allwatchlist
-        })
-    }
-    deleteWatchlist = async (deletedWatchlist) => {
-        const status = await this.WatchlistService.deleteWatchlist(deletedWatchlist._id)
-        const allwatchlist = await this.WatchlistService.getWatchlistForUser(this.state.profile.id)
-        this.setState({
-            watchlist: allwatchlist
-        })
-    }
-    updateWatchlist = async (updatedWatchlist) => {
-        const status = await this.WatchlistService.updateWatchlist(updatedWatchlist._id)
-        const allwatchlist = await this.WatchlistService.getWatchlistForUser(this.state.profile.id)
-        this.setState({
-            watchlist: allwatchlist
-        })
-    }
-    componentDidMount = async () => {
-        const profile = await this.UserService.getSession()
-        if(profile.username !== "PLEASE LOGIN FIRST"){
-            this.setState({
-                profile: profile,
-                session:true
-            })
-            const serviceList = await this.WatchlistService.getWatchlistForUser(this.state.profile.id)
-            console.log(serviceList)
-            this.setState({
-                watchlist: serviceList,
-            })
+    componentDidUpdate(prevProps, prevState, snapshot){
+        if(prevProps.uid !== this.props.uid || prevProps!== this.state){
+            this.props.findWatchlistsForUser(this.props.uid)
         }
     }
-
     render() {
         return (
-            <div>
-                <div
-                    className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
-                        
-                        <form className="form-inline">
-                        <Link to="/">
-                            <button className="btn btn-outline-dark">home</button>
-                        </Link>
-                        <Link to="/watchlist">
-                            <button className="btn btn-outline-dark">watch-list</button>
-                        </Link>
-                        <Link to="/research">
-                            <button className="btn btn-outline-dark">self-research></button>
-                        </Link>
-                        <div hidden={this.state.session}>
-                        <Link className="" to="/login">
-                            <button className="btn btn-outline-primary">Log in</button>
-                        </Link>
+            <div className= "container-fluid">
+                <div>
+                    <div >
+                        <div className="inline">
+                        <input
+                            type="text" 
+                            className="form-control" 
+                            onChange={(e) => this.setState({
+                                newListTitle: e.target.value
+                            })}
+                            value={this.state.newListTitle}/>
                         </div>
-                        <div hidden={this.state.session}>
-                        <Link to="/register">
-                            <button className="btn btn-outline-primary">Sign up</button>
-                        </Link>
+                        <div className="inline">
+                                <button 
+                                    className="btn btn-outline-secondary" 
+                                    onClick={() =>{
+                                        const newWatchlist = {title: this.state.newListTitle}
+                                        this.props.createWatchlist(this.props.uid, newWatchlist)
+                                    }}>
+                                    <i className="fa fa-fw fa-plus"></i>
+                                </button>
                         </div>
-                        <div hidden={!this.state.session}>
-                            <button className="btn btn-outline-primary" onClick={()=>this.logout()}>Log out</button>
-                        </div>
-                        </form>
-                    
+                    </div>
                 </div>
-                {this.state.session && 
-                <WatchlistTableComponent
-                    profile = {this.state.profile}
-                    watchlists ={this.state.watchlist}
-                    updateForm = {this.updateForm}
-                    deleteWatchlist = {this.deleteWatchlist}
-                    addWatchlist = {this.addWatchlist}
-                    updateWatchlist = {this.updateWatchlist}
-                    newListTitle = {this.state.newListTitle}
-                />}
-                {!this.state.session && 
-                    <h2>PLEASE login first!</h2>
+                {!this.props.watchlists &&
+                    <h2>No Watchlist Created yet!</h2>
                 }
+                {this.props.watchlists &&
+                    <ul className="list-group">
+                        {
+                            this.props.watchlists.map(watchlist => 
+                                <li className="list-group-item" 
+                                    onClick={()=>{
+                                        const wid = watchlist.id
+                                        this.props.history.push(`/watchlist/${wid}`)
+                                        this.setState({activewid: watchlist.id})
+                                    }}
+                                    key={watchlist.id}>
+                                    <a className={`list-group-item
+                                            ${(this.state.editingwid === watchlist.id || this.state.activewid === watchlist.id)?'active':''}`}>
+                                        {this.editingwid !== watchlist.id &&
+                                            <span>{watchlist.title}</span>
+                                        }
+                                        {this.editingwid === watchlist.id &&
+                                            <input 
+                                                onChange={(e)=>this.setState({watchlist:{title: e.target.value}})}
+                                                value={this.state.watchlist.title}/>
+                                        }
+                                        {this.editingwid === watchlist.id &&
+                                            <button onClick={()=>{
+                                                this.props.updateWatchlist(this.state.currID, this.state.watchlist)
+                                                    .then(()=>this.setState({editingwid:''}))
+                                                this.forceUpdate()
+                                            }}>
+                                                <i className="fa fa-save"></i>
+                                            </button>
+                                        }
+                                        {this.editingwid === watchlist.id &&
+                                            <button onClick={
+                                                ()=>this.props.deleteWatchlist(watchlist.id)
+                                            }>
+                                                <i className="fa fa-trash"></i>
+                                            </button>
+                                        }
+                                        {this.editingwid !== watchlist.id &&
+                                            <button onClick={()=>{
+                                                const wid = watchlist.id
+                                                this.props.history.push(`/watchlist/${wid}`)
+                                                this.setState({
+                                                    watchlist: watchlist,
+                                                    currID: watchlist.id,
+                                                    editingwid: watchlist.id
+                                                })
+            
+                                                console.log(watchlist.id)
+                                                console.log(this.state.editingwid)
+                                                console.log(this.state.editingwid===watchlist.id)
+                                            }}>
+                                                <i className="fa fa-pencil"></i>
+                                            </button>
+                                        }
+                                    </a>
+                                </li>
+                                )
+                        }
+                    </ul>
+                }
+                
             </div>
         )
     }
