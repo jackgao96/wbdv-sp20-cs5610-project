@@ -96,20 +96,20 @@ class SearchClientComponent extends React.Component {
                             <Link to="/research">
                                 <button className="btn btn-outline-dark">self-research</button>
                             </Link>
-                            <div hidden={this.state.profile.username}>
+                            <div hidden={this.state.profile.password}>
                                 <Link className="" to="/login">
                                     <button className="btn btn-outline-primary">Log in</button>
                                 </Link>
                             </div>
-
+                            <div hidden={this.state.profile.password}>
                                 <Link to="/register">
                                     <button className="btn btn-outline-primary">Sign up</button>
                                 </Link>
-
-                            <div hidden={!this.state.profile.username}>
+                            </div>
+                            <div hidden={!this.state.profile.password}>
                                 <button className="btn btn-outline-primary" onClick={()=>this.logout()}>Log out</button>
                             </div>
-                            <div hidden={!this.state.profile.username}>
+                            <div hidden={!this.state.profile.password}>
                                 <Link to="/profile">
                                     <button className="btn btn-outline-primary">Profile</button>
                                 </Link>
