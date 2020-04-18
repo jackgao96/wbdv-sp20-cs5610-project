@@ -5,7 +5,7 @@ class UserService{
             credentials: "include"
         }).then(reseponse => reseponse.json())
     }
-    login = async(user) => {
+    login = async (user) => {
         return await fetch(`https://infinite-retreat-10652.herokuapp.com/login`, {
             method: 'POST',
             body: JSON.stringify(user),
