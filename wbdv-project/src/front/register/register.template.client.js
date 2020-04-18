@@ -29,6 +29,46 @@ class RegisterPageClient extends React.Component {
     render() {
         return (
             <div className="container">
+                <div
+                    className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+                    <h5 className="my-0 mr-md-auto font-weight-normal"> Logo Here </h5>
+                    <img src=""/>
+                    <a> About </a>
+                </div>
+                <div
+                    className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
+
+                    <form className="form-inline">
+                        <Link to="/">
+                            <button className="btn btn-outline-dark">home</button>
+                        </Link>
+                        <Link to="/watchlist">
+                            <button className="btn btn-outline-dark">watch-list</button>
+                        </Link>
+                        <Link to="/research">
+                            <button className="btn btn-outline-dark">self-research</button>
+                        </Link>
+                        <div hidden={this.state.session}>
+                            <Link className="" to="/login">
+                                <button className="btn btn-outline-primary">Log in</button>
+                            </Link>
+                        </div>
+                        <div hidden={this.state.session}>
+                            <Link to="/register">
+                                <button className="btn btn-outline-primary">Sign up</button>
+                            </Link>
+                        </div>
+                        <div hidden={!this.state.session}>
+                            <button className="btn btn-outline-primary" onClick={()=>this.logout()}>Log out</button>
+                        </div>
+                        <div hidden={!this.state.session}>
+                            <Link to="/profile">
+                                <button className="btn btn-outline-primary">Profile</button>
+                            </Link>
+                        </div>
+                    </form>
+
+                </div>
                 <h1>Sign Up</h1>
                 <form>
                     <div className="form-group row">
