@@ -16,9 +16,3 @@ export const deleteStock = (stockId) => ({
     stockId: stockId
 })
 
-export const UPDATE_STOCK = "UPDATE_STOCK"
-export const updateStock = (stock) => ({
-    type: UPDATE_STOCK,
-    stockId: stock.id,
-    stock: stock
-})
