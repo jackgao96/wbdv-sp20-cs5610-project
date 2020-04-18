@@ -44,7 +44,7 @@ class LoginPageClient extends React.Component {
                     className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
 
                     <form className="form-inline">
-                        <Link to="/">
+                        <Link to="/home">
                             <button className="btn btn-outline-dark">home</button>
                         </Link>
                         <Link to="/research">

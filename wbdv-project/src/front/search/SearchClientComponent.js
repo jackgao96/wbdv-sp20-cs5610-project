@@ -148,7 +148,7 @@ class SearchClientComponent extends React.Component {
                         </div>
                         {this.state.viewdetail == 0 &&
                         <div>
-                            <p><h5>Stock Name:</h5>{this.props.stock.profile.companyName}</p>
+                            <p><h5>Stock Name:</h5>{this.state.stock.profile.companyName}</p>
                             <div class="row">
                             <button
                                 className="btn bg-info btn-rounded my-0" type="submit"
