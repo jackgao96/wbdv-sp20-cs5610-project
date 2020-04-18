@@ -1,4 +1,4 @@
-import {FIND_WATCHLISTS_FOR_USER, CREATE_WATCHLIST, UPDATE_WATCHLIST, DELETE_WATCHLIST} from '../../actions/watchlistActions'
+import {FIND_WATCHLISTS_FOR_USER, CREATE_WATCHLIST, UPDATE_WATCHLIST, DELETE_WATCHLIST} from '../../actions/WatchlistActions'
 const initial = {
     watchlists : []
 }
