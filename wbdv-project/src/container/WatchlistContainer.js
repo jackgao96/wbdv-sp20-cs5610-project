@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import service from '../services/watchlistService'
+import service from '../services/WatchlistService'
 import {findWatchlistsForUser, createWatchlist, deleteWatchlist, updateWatchlist} from '../actions/watchlistActions'
 import WatchlistComponent from '../front/watchlist/watchlistComponent'
 
