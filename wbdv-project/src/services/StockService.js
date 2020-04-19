@@ -6,7 +6,10 @@ export const getStocksForCategory = async (category) => {
         }
     }).then(response => response.json())
 }
-
+export const getStockBySymbol = async (symbol) => {
+    return await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${symbol}`)
+    .then(response => response.json())
+}
 export const addStockToWatchlist = async (wid, stock) => {
     return await fetch(`https://infinite-retreat-10652.herokuapp.com/api/watchlists/${wid}/stocks`, {
         method: 'POST',
@@ -34,6 +37,7 @@ export default{
     getStocksForCategory,
     addStockToWatchlist,
     removeStockFromWatchlist,
-    getStocksForWatchlist
+    getStocksForWatchlist,
+    getStockBySymbol
 }
 

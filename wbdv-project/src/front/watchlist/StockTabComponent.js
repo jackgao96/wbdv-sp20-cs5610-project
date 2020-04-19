@@ -4,8 +4,8 @@ export default class StockTabComponent extends React.Component{
     componentDidMount(){
         this.props.findStocksForWatchlist(this.props.wid)
     }
-    componentDidUpdate(prevState, prevProps, snapshot){
-        if(prevState !== this.state || prevProps.wid != this.props.wid){
+    componentDidUpdate(prevProps, prevState, snapshot){
+        if(prevProps.wid !== this.props.wid){
             this.props.findStocksForWatchlist(this.props.wid)
         }
     }
@@ -20,23 +20,25 @@ export default class StockTabComponent extends React.Component{
                 {
                     this.props.stocks && this.props.stocks.map(stock => 
                         <li className={`nav-item`}
-                            onClick={
-                                ()=>{
-                                    this.props.history.push(`/watchlist/${this.props.wid}/stock/${stock.id}`)
-                                    this.setState({
-                                        activeStockId: stock.id
-                                    })
-                                }
-                            }
                             key={stock.id}>
-                            <a className={`nav-item ${this.state.activeStockId===stock.id ? 'active':''}`}>
+                            <a className={`nav-item ${this.state.activeStockId===stock.symbol ? 'active':''}`}
+                                onClick={
+                                    ()=>{
+                                        this.props.history.push(`/watchlist/${this.props.wid}/stock/${stock.symbol}`)
+                                        this.setState({
+                                            activeStockId: stock.symbol
+                                        })
+                                    }
+                                }>
                                 <span>{stock.name}</span>
-                                <button onClick={
-                                    ()=>this.props.deleteStock(this.props.wid, stock.id)
+                            </a>
+                            <button onClick={()=>{
+                                    this.props.history.push(`/watchlist/${this.props.wid}`)
+                                    this.props.deleteStock(this.props.wid, stock.id)
+                                }
                                 }>
                                     <i className="fa fa-trash"></i>
-                                </button>
-                            </a>
+                            </button>
                         </li>
                     )
                 }
