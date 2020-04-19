@@ -13,7 +13,9 @@ class ProfilePageClient extends React.Component{
             username: '',
             password: '',
             email: '',
+            registertime: '',
             watchlists: [],
+            showPwd: false,
 
             session:false
         }
@@ -32,6 +34,8 @@ class ProfilePageClient extends React.Component{
                 username: profile.username,
                 email: profile.email,
                 watchlists: profile.watchlists,
+                registertime: profile.registertime,
+                showPwd: false,
                 session:true
             })
         }
@@ -62,6 +66,11 @@ class ProfilePageClient extends React.Component{
                     <div hidden={!this.state.username}>
                         <Link to="/research">
                             <button className="btn btn-outline-dark">self-research</button>
+                        </Link>
+                    </div>
+                    <div hidden={!this.state.username}>
+                        <Link to="/watchlist">
+                            <button className="btn btn-outline-dark">watch-list</button>
                         </Link>
                     </div>
                     <div hidden={this.state.username}>
@@ -132,21 +141,45 @@ class ProfilePageClient extends React.Component{
                     <div className="container">
                         <ul className="list-group ">
                             <li className="list-group-item">
-                                user id: {this.state.id}
+                                User Id: {this.state.id}
                             </li>
                             <li className="list-group-item">
-                                username: {this.state.username}
+                                Username: {this.state.username}
                             </li>
                             <li className="list-group-item">
-                                email: {this.state.email}
+                                Email: {this.state.email}
                             </li>
                             <li className="list-group-item">
-                                password: {this.state.password}
+                                password:
+                                <a hidden={!this.state.showPwd}>{this.state.password}
+                                    <button
+                                        className="float-right"
+                                        hidden={!this.state.showPwd}
+                                        onClick={() => {
+                                            this.setState({
+                                                showPwd: false
+                                            })
+                                        }}>Hide</button>
+                                </a>
+
+                                <a hidden={this.state.showPwd}>*******
+                                    <button
+                                        className="float-right"
+                                        hidden={this.state.showPwd}
+                                        onClick={() => {
+                                            this.setState({
+                                                showPwd: true
+                                            })
+                                        }}>Show</button>
+                                </a>
+                            </li>
+                            <li className="list-group-item">
+                                Register Time: {this.state.registertime}
                             </li>
                         </ul>
 
                         <Link to = "/watchlist">
-                            <button className="btn btn-outline-dark">Watchlsit</button>
+                            <button className="btn btn-outline-dark">Watchlist</button>
                         </Link>
 
 
