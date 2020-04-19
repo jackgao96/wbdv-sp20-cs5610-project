@@ -13,6 +13,24 @@ class HomePageClient extends React.Component {
         }
         this.UserService = new UserService();
         this.AdminService = new AdminService();
+
+        const profile = this.UserService.getSession()
+        const admin = fetch(`https://infinite-retreat-10652.herokuapp.com/admin/profile`, {
+            method: 'GET',
+            credentials: "include"
+        }).then(reseponse => reseponse.json()).then(profile => this.setState({
+            admin: profile
+        })).then(status => console.log(this.state.profile))
+
+        if (profile.username !== "PLEASE LOGIN FIRST") {
+            this.setState({
+                profile: profile,
+                session: true
+            })
+        }
+        console.log(this.state.profile)
+
+
     }
 
     componentDidMount = async () => {

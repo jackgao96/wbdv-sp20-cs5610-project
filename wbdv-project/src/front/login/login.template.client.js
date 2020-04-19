@@ -6,17 +6,27 @@ class LoginPageClient extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user:{username: '',
-                password: ''},
-            usertype:"1"
+            user: {
+                username: '',
+                password: ''
+            },
+            usertype: "1",
+            profile: {}
         }
         this.UserService = new UserService();
         console.log(props)
     }
 
+    checkLogin = async () => {
+        //alert('123123')
+        const profile = await this.UserService.getSession()
+        this.setState({profile: profile})
+
+    }
     handleLogin = async (user) => {
-       return this.UserService.login(user)
-         //this.props.history.push('/home')
+        //alert('222')
+        return this.UserService.login(user)
+        //this.props.history.push('/home')
     }
     AdminLogin = async (user) => {
         //alert('admin')
@@ -77,7 +87,7 @@ class LoginPageClient extends React.Component {
                                    onChange={(e) => this.setState({
                                        user: {
                                            ...this.state.user,
-                                           username:e.target.value
+                                           username: e.target.value
                                        }
                                    })}
                             />
@@ -93,7 +103,7 @@ class LoginPageClient extends React.Component {
                                    onChange={(e) => this.setState({
                                        user: {
                                            ...this.state.user,
-                                           password:e.target.value
+                                           password: e.target.value
                                        }
                                    })}
                             />
@@ -107,14 +117,14 @@ class LoginPageClient extends React.Component {
                                         const newType = e.target.value
                                         console.log(e.target.value)
                                         this.setState(prevState => ({
-                                            usertype:newType
+                                            usertype: newType
                                         }))
                                     }}
                                     value={this.state.usertype}
 
                             >
                                 <option selected value="1">User</option>
-                                <option value="2" >Admin</option>
+                                <option value="2">Admin</option>
                             </select>
                         </div>
                     </div>
@@ -126,11 +136,11 @@ class LoginPageClient extends React.Component {
                             <button
                                 className="btn btn-primary btn-block wbdv-button wbdv-login"
                                 onClick={() => {
-                                    if(this.state.usertype=="1")
+                                    if (this.state.usertype == "1") {
                                         this.handleLogin(this.state.user)
-                                    else
+                                        this.checkLogin()
+                                    } else
                                         this.AdminLogin(this.state.user)
-                                    //this.props.history.push("/search")
                                 }
                                 }>
                                 Sign In
