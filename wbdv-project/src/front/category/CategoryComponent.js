@@ -8,16 +8,17 @@ class CategoryComponent extends React.Component {
         super(props);
         this.props = props;
         this.catName = this.props.match.params.catName;
-        this.stockService = new StockService();
+        //this.stockService = new StockService();
     }
 
     state = {
+        watchList:[],
         catStocks: []
     }
 
     componentDidMount = async () => {
 
-        const serviceCatStocks = await this.stockService.getStocksForCategory(this.catName)
+        const serviceCatStocks = await StockService.getStocksForCategory(this.catName)
         console.log(serviceCatStocks)
         this.setState({
             catStocks: serviceCatStocks,
@@ -25,7 +26,7 @@ class CategoryComponent extends React.Component {
     }
 
     addToWatchList = async (stock) => {
-        this.stockService.addStockToWatchlist(stock).then(this.setState(prevState => ({
+        StockService.addStockToWatchlist(stock).then(this.setState(prevState => ({
             watchList: [...prevState.watchList, stock]
         })))
         

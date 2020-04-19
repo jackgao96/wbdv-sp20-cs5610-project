@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
 import StockTabContainer from "../../container/StockTabContainer";
-
+import DetailComponent from './DetailComponent'
 const rootReducer = combineReducers({
     watchlists: WatchlistReducer,
     stocks: StockReducer
@@ -55,7 +55,7 @@ class WatchlistEditor extends React.Component {
                     className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
                         
                         <form className="form-inline">
-                        <Link to="/">
+                        <Link to="/home">
                             <button className="btn btn-outline-dark">home</button>
                         </Link>
                         <Link to="/watchlist">
@@ -95,6 +95,8 @@ class WatchlistEditor extends React.Component {
                             wid={this.props.watchlistId}
                             sid={this.props.stockId}
                             history={this.props.history}/>
+                        <DetailComponent
+                            sid={this.props.stockId}/>
                     </div>
                 </div>
                 }

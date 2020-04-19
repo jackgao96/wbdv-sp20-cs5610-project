@@ -44,7 +44,7 @@ class LoginPageClient extends React.Component {
                     className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
 
                     <form className="form-inline">
-                        <Link to="/">
+                        <Link to="/home">
                             <button className="btn btn-outline-dark">home</button>
                         </Link>
                         <Link to="/research">
@@ -138,7 +138,7 @@ class LoginPageClient extends React.Component {
                             </Link>
                             <div className="row">
                                 <div className="col-6">
-                                    <a className="wbdv-link wbdv-forgot-password" href="#">Forgot Password?</a>
+                                    <a className="wbdv-link wbdv-forgot-password" href="#"></a>
                                 </div>
                                 <div className="col-6">
                                     <Link to="/register">
