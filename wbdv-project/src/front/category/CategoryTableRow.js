@@ -9,7 +9,7 @@ class CategoryTableRow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            stocknow: '',
+            stocknow: {},
             rating: '',
             chosewatchlist: '',
             user: {watchlists: []}
@@ -29,7 +29,7 @@ class CategoryTableRow extends React.Component {
         console.log(user)
         this.setState(
             {
-                stocknow: stock.profile.price,
+                stocknow: stock,
                 rating: rating,
                 user: user
             }
@@ -61,7 +61,12 @@ class CategoryTableRow extends React.Component {
                     <tr>
                         <td>{this.stock.name}</td>
                         <td>{this.stock.symbol}</td>
-                        <td>{this.state.stocknow}</td>
+                        {this.state.stocknow.profile&&
+                            <td>{this.state.stocknow.profile.price}</td>
+                        }
+                        {!this.state.stocknow.profile&&
+                        <td>Not Clear</td>
+                        }
                         {this.state.rating.rating &&
                         <td>{this.state.rating.rating.recommendation}</td>
                         }
