@@ -8,7 +8,7 @@ class CategoryComponent extends React.Component {
         super(props);
         this.props = props;
         this.catName = this.props.match.params.catName;
-       // this.stockService = new StockService();
+        //this.stockService = new StockService();
     }
 
     state = {

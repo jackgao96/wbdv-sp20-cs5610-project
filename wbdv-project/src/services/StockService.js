@@ -15,7 +15,7 @@ export const addStockToWatchlist = async (wid, stock) => {
         method: 'POST',
         body: JSON.stringify(stock),
         headers: {
-        'content-type': 'application/json'
+            'content-type': 'application/json'
         }
     }).then(response => response.json())
 }
@@ -26,14 +26,15 @@ export const removeStockFromWatchlist = async (wid, stockId) => {
     }).then(response => response.json())
 }
 export const getStocksForWatchlist = async (wid) => {
-    return await fetch(`https://infinite-retreat-10652.herokuapp.com/api/watchlists/${wid}/stocks`, {
-        method: "GET",
-        headers: {
-            'content-type': 'application/json'
-        }
-    }).then(response => response.json())
+    if (wid != '')
+        return await fetch(`https://infinite-retreat-10652.herokuapp.com/api/watchlists/${wid}/stocks`, {
+            method: "GET",
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(response => response.json())
 }
-export default{
+export default {
     getStocksForCategory,
     addStockToWatchlist,
     removeStockFromWatchlist,
