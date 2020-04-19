@@ -183,6 +183,7 @@ class SearchClientComponent extends React.Component {
                                             }}
                                             value={this.state.chosewatchlist}
                                     >
+                                        <option className="btn bg-info btn-rounded my-0" type="submit" value=''>please choose your watchlist: </option>
                                         {this.state.profile.watchlists.map(watchlist =>
                                             <option
                                                 className="btn bg-info btn-rounded my-0" type="submit" value={watchlist.id}>
