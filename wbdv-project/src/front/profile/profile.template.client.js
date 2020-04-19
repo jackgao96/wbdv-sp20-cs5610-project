@@ -49,11 +49,38 @@ class ProfilePageClient extends React.Component{
     }
     render() {
         return(
-            <div className="container">
+            <div className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
                 <h2>Profile Page</h2>
-                <Link to="/home">
-                    Go back to homepage
-                </Link>
+
+
+
+                <form className="form-inline">
+                    <Link to="/home">
+                        <button className="btn btn-outline-dark">home</button>
+                    </Link>
+
+                    <div hidden={!this.state.username}>
+                        <Link to="/research">
+                            <button className="btn btn-outline-dark">self-research</button>
+                        </Link>
+                    </div>
+                    <div hidden={this.state.username}>
+                        <Link className="" to="/login">
+                            <button className="btn btn-outline-primary">Log in</button>
+                        </Link>
+                    </div>
+                    <div hidden={this.state.username}>
+                        <Link to="/register">
+                            <button className="btn btn-outline-primary">Sign up</button>
+                        </Link>
+                    </div>
+                    <div hidden={!this.state.username}>
+                        <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log out</button>
+                    </div>
+
+                </form>
+
+
 
                 {   this.state.editing &&
                     <div className="form-group row">
