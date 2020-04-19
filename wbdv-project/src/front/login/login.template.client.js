@@ -138,7 +138,7 @@ class LoginPageClient extends React.Component {
                             </Link>
                             <div className="row">
                                 <div className="col-6">
-                                    <a className="wbdv-link wbdv-forgot-password" href="#">Forgot Password?</a>
+                                    <a className="wbdv-link wbdv-forgot-password" href="#"></a>
                                 </div>
                                 <div className="col-6">
                                     <Link to="/register">

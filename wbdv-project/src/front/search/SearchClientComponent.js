@@ -5,15 +5,24 @@ import {Link} from "react-router-dom";
 import UserService from "../../services/UserService";
 import AdminService from "../../services/AdminService";
 import StockService from "../../services/StockService";
+
 class SearchClientComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            chosewatchlist:{},
             stockname: '',
             gainstock: [],
             losestock: [],
+            stock: {
+                profile: {
+                    companyName: '',
+                    watchlists:[]
+                }
+            },
             profile: {
-                id:'',
+                id: '',
+                watchlists:[],
                 username: '',
                 password: '',
                 firstName: '',
@@ -22,23 +31,26 @@ class SearchClientComponent extends React.Component {
                 roles: []
             },
             viewdetail: 0,
-            session:false
+            session: false
         }
         this.UserService = new UserService();
         this.AdminService = new AdminService();
         //this.StockService = new StockService();
     }
-    addToWatchlist(wid,stock){
-        StockService.addStockToWatchlist(wid,stock)
+
+    addToWatchlist(wid, stock) {
+        StockService.addStockToWatchlist(wid, stock)
         alert("Add Successful!")
     }
-    logout(){
+
+    logout() {
         //this.UserService.logout();
         this.AdminService.logout();
         this.setState({
-            profile:{},
+            profile: {},
         })
     }
+
     componentDidMount = async () => {
         const initstock = await this.props.initGainer()
         const initstock2 = await this.props.initLoser()
@@ -99,7 +111,8 @@ class SearchClientComponent extends React.Component {
                                 </Link>
                             </div>
                             <div hidden={!this.state.profile.password}>
-                                <button className="btn btn-outline-primary" onClick={()=>this.logout()}>Log out</button>
+                                <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log out
+                                </button>
                             </div>
                             <div hidden={!this.state.profile.password}>
                                 <Link to="/profile">
@@ -150,25 +163,43 @@ class SearchClientComponent extends React.Component {
                         <div>
                             <p><h5>Stock Name:</h5>{this.state.stock.profile.companyName}</p>
                             <div class="row">
-                            <button
-                                className="btn bg-info btn-rounded my-0" type="submit"
-                                onClick={() =>
-                                    this.setState({
-                                        viewdetail: 1
-                                    })
-                                }
-                            >Show Details
-                            </button>
-                                {this.state.profile.watchlists.map(watchlist=>
-                                    <button
-                                        className="btn bg-info btn-rounded my-0" type="submit"
-                                        onClick={() =>
-                                            this.addToWatchlist(watchlist.id,{name:this.props.stock.profile.companyName,symbol:this.props.stock.symbol,category:this.props.stock.profile.sector,recommendation:'Strong Buy'})
+                                <button
+                                    className="btn bg-info btn-rounded my-0" type="submit"
+                                    onClick={() =>
+                                        this.setState({
+                                            viewdetail: 1
+                                        })
+                                    }
+                                >Show Details
+                                </button>
+                                <div>
+                                    <select className="custom-select" id="inputGroupSelect01"
+                                            onChange={(e) => {
+                                                const newType = e.target.value
+                                                console.log(e.target.value)
+                                                this.setState(prevState => ({
+                                                    chosewatchlist:newType
+                                                }))
+                                            }}
+                                            value={this.state.chosewatchlist}
+                                    >
+                                        {this.state.profile.watchlists.map(watchlist =>
+                                            <option
+                                                className="btn bg-info btn-rounded my-0" type="submit" value={watchlist.id}>
+                                                Your Watchlist: {watchlist.title}
+                                            </option>
+                                        )
                                         }
-                                    >Add to Watchlist: {watchlist.title}
+                                    </select>
+                                    <button onClick={() =>
+                                        this.addToWatchlist(this.state.chosewatchlist, {
+                                            name: this.props.stock.profile.companyName,
+                                            symbol: this.props.stock.symbol,
+                                            category: this.props.stock.profile.sector,
+                                            recommendation: 'Strong Buy'
+                                        })}>Add
                                     </button>
-                                )
-                                }
+                                </div>
                             </div>
                         </div>}
                         {this.state.viewdetail == 1 &&
@@ -188,45 +219,45 @@ class SearchClientComponent extends React.Component {
                     </div>
                     }
                 </div>
-                    <div className="row container">
-                        <div className="col-sm-6">
-                            <h3 className="alert alert-success">
-                                Today's Top Gainer
-                            </h3>
+                <div className="row container">
+                    <div className="col-sm-6">
+                        <h3 className="alert alert-success">
+                            Today's Top Gainer
+                        </h3>
 
-                            {
-                                this.state.gainstock.mostGainerStock && this.state.gainstock.mostGainerStock.map(itstock =>
-                                    <div className="row container">
-                                        <h5>Name:</h5> {itstock.companyName}
-                                        {itstock.ticker}
-                                        <h5>Percentage:</h5>
-                                        {itstock.changesPercentage}
-                                        <h5>Price:</h5>
-                                        {itstock.price}
-                                    </div>
-                                )
-                            }
-                        </div>
-                        <div className={"col-sm-6"}>
-                            <h3 className="alert alert-danger">
-                                Today's Top Loser
-                            </h3>
-
-                            {
-                                //console.log(this.state.initstock.mostGainerStock)
-                                this.state.losestock.mostLoserStock && this.state.losestock.mostLoserStock.map(itstock =>
-                                    <div className="row container">
-                                        <h5>Name:</h5> {itstock.companyName}
-                                        {itstock.ticker}
-                                        <h5>Percentage:</h5>
-                                        {itstock.changesPercentage}
-                                        <h5>Price:</h5>
-                                        {itstock.price}
-                                    </div>
-                                )
-                            }
-                        </div>
+                        {
+                            this.state.gainstock.mostGainerStock && this.state.gainstock.mostGainerStock.map(itstock =>
+                                <div className="row container">
+                                    <h5>Name:</h5> {itstock.companyName}
+                                    {itstock.ticker}
+                                    <h5>Percentage:</h5>
+                                    {itstock.changesPercentage}
+                                    <h5>Price:</h5>
+                                    {itstock.price}
+                                </div>
+                            )
+                        }
                     </div>
+                    <div className={"col-sm-6"}>
+                        <h3 className="alert alert-danger">
+                            Today's Top Loser
+                        </h3>
+
+                        {
+                            //console.log(this.state.initstock.mostGainerStock)
+                            this.state.losestock.mostLoserStock && this.state.losestock.mostLoserStock.map(itstock =>
+                                <div className="row container">
+                                    <h5>Name:</h5> {itstock.companyName}
+                                    {itstock.ticker}
+                                    <h5>Percentage:</h5>
+                                    {itstock.changesPercentage}
+                                    <h5>Price:</h5>
+                                    {itstock.price}
+                                </div>
+                            )
+                        }
+                    </div>
+                </div>
 
             </div>
 
