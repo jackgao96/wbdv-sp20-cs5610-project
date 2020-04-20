@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import UserService from "../../services/UserService";
 import AdminService from "../../services/AdminService";
 import StockService from "../../services/StockService";
+import "./SearchStyle.css"
 
 class SearchClientComponent extends React.Component {
     constructor(props) {
@@ -80,49 +81,53 @@ class SearchClientComponent extends React.Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <div
-                        className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-                        <h5 className="my-0 mr-md-auto font-weight-normal"> Logo Here </h5>
-                        <img src=""/>
-                        <a> About </a>
-                    </div>
-                    <div
-                        className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
-
-                        <form className="form-inline">
-                            <Link to="/home">
-                                <button className="btn btn-outline-dark">home</button>
-                            </Link>
-                            <Link to="/watchlist">
-                                <button className="btn btn-outline-dark">watch-list</button>
-                            </Link>
-                            <Link to="/research">
-                                <button className="btn btn-outline-dark">self-research</button>
-                            </Link>
-                            <div hidden={this.state.profile.password}>
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <h2 className="navbar-brand" >Stocks4all</h2>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <ul className="navbar-nav">
+                            <li className="nav-item active">
+                                <Link to="/home">
+                                    <button className="btn btn-outline-dark">Home</button>
+                                </Link>
+                            </li>
+                            <li className="nav-item ">
+                                <Link to="/watchlist">
+                                    <button className="btn btn-outline-dark">Watchlist</button>
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/research">
+                                    <button className="btn btn-outline-dark">Self-Research</button>
+                                </Link>
+                            </li>
+                            <li className="nav-item nav-right" hidden={this.state.profile.password}>
                                 <Link className="" to="/login">
-                                    <button className="btn btn-outline-primary">Log in</button>
+                                    <button className="btn btn-outline-primary">Login</button>
                                 </Link>
-                            </div>
-                            <div hidden={this.state.profile.password}>
+                            </li>
+                            <li className="nav-item nav-right" hidden={this.state.profile.password}>
                                 <Link to="/register">
-                                    <button className="btn btn-outline-primary">Sign up</button>
+                                    <button className="btn btn-outline-primary">SignUp</button>
                                 </Link>
-                            </div>
-                            <div hidden={!this.state.profile.password}>
-                                <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log out
+                            </li>
+                            <li className="nav-item nav-right" hidden={!this.state.profile.password}>
+                                <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log
+                                    out
                                 </button>
-                            </div>
-                            <div hidden={!this.state.profile.password}>
+                            </li>
+                            <li className="nav-item nav-right"  hidden={!this.state.profile.password}>
                                 <Link to="/profile">
                                     <button className="btn btn-outline-primary">Profile</button>
                                 </Link>
-                            </div>
-                        </form>
-
+                            </li>
+                        </ul>
                     </div>
-                </div>
+                </nav>
                 <div className="container">
                     <h1>self-research</h1>
                     <div className="row">

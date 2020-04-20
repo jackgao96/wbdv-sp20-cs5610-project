@@ -4,10 +4,12 @@ import UserService from "../../services/UserService"
 import WatchlistReducer from './WatchlistReducer'
 import StockReducer from './StockReducer'
 import {Link} from "react-router-dom";
-import { combineReducers, createStore } from "redux";
-import { Provider } from "react-redux";
+import {combineReducers, createStore} from "redux";
+import {Provider} from "react-redux";
 import StockTabContainer from "../../container/StockTabContainer";
 import DetailComponent from './DetailComponent'
+import "./WatchlistStyle.css"
+
 const rootReducer = combineReducers({
     watchlists: WatchlistReducer,
     stocks: StockReducer
@@ -18,9 +20,9 @@ class WatchlistEditor extends React.Component {
     constructor(props) {
         super(props);
         this.UserService = new UserService();
-        this.state={
+        this.state = {
             profile: {
-                id:'',
+                id: '',
                 username: '',
                 password: '',
                 firstName: '',
@@ -30,19 +32,21 @@ class WatchlistEditor extends React.Component {
             }
         }
     }
-    logout(){
-        this.UserService.logout();        
+
+    logout() {
+        this.UserService.logout();
         this.setState({
-            profile:{},
-            session:false
+            profile: {},
+            session: false
         })
     }
+
     componentDidMount = async () => {
         const profile = await this.UserService.getSession()
-        if(profile.username !== "PLEASE LOGIN FIRST"){
+        if (profile.username !== "PLEASE LOGIN FIRST") {
             this.setState({
                 profile: profile,
-                session:true
+                session: true
             })
         }
     }
@@ -50,62 +54,82 @@ class WatchlistEditor extends React.Component {
     render() {
         return (
             <Provider store={store}>
-            <div>
-                <div
-                    className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
-                        
-                        <form className="form-inline">
-                        <Link to="/home">
-                            <button className="btn btn-outline-dark">home</button>
-                        </Link>
-                        <Link to="/watchlist">
-                            <button className="btn btn-outline-dark">watch-list</button>
-                        </Link>
-                        <Link to="/research">
-                            <button className="btn btn-outline-dark">self-research></button>
-                        </Link>
-                        <div hidden={this.state.session}>
-                        <Link className="" to="/login">
-                            <button className="btn btn-outline-primary">Log in</button>
-                        </Link>
+                <div>
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                        <h2 className="navbar-brand">Stocks4all</h2>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <ul className="navbar-nav">
+                                <li className="nav-item active">
+                                    <Link to="/home">
+                                        <button className="btn btn-outline-dark">Home</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item ">
+                                    <Link to="/watchlist">
+                                        <button className="btn btn-outline-dark">Watchlist</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to="/research">
+                                        <button className="btn btn-outline-dark">Self-Research</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item nav-right" hidden={this.state.session}>
+                                    <Link className="" to="/login">
+                                        <button className="btn btn-outline-primary">Login</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item nav-right" hidden={this.state.session}>
+                                    <Link to="/register">
+                                        <button className="btn btn-outline-primary">SignUp</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item nav-right" hidden={!this.state.session}>
+                                    <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log
+                                        out
+                                    </button>
+                                </li>
+                                <li className="nav-item nav-right" hidden={!this.state.session}>
+                                    <Link to="/profile">
+                                        <button className="btn btn-outline-primary">Profile</button>
+                                    </Link>
+                                </li>
+                            </ul>
                         </div>
-                        <div hidden={this.state.session}>
-                        <Link to="/register">
-                            <button className="btn btn-outline-primary">Sign up</button>
-                        </Link>
+                    </nav>
+                    {this.state.session &&
+                    <div className="row">
+                        <div className="col-4">
+                            <h4>{this.state.profile.username}'s Watchlist</h4>
+                            <WatchlistContainer
+                                uid={this.state.profile.id}
+                                wid={this.props.watchlistId}
+                                history={this.props.history}/>
                         </div>
-                        <div hidden={!this.state.session}>
-                            <button className="btn btn-outline-primary" onClick={()=>this.logout()}>Log out</button>
+                        <div className="col-8">
+                            <StockTabContainer
+                                uid={this.state.profile.id}
+                                wid={this.props.watchlistId}
+                                sid={this.props.stockId}
+                                history={this.props.history}/>
+                            <DetailComponent
+                                sid={this.props.stockId}/>
                         </div>
-                        </form>
-                    
-                </div>
-                {this.state.session && 
-                <div className="row">
-                    <div className="col-4">
-                        <h4>{this.state.profile.username}'s Watchlist</h4>
-                        <WatchlistContainer
-                            uid={this.state.profile.id}
-                            wid={this.props.watchlistId}
-                            history={this.props.history}/>
                     </div>
-                    <div className="col-8">
-                        <StockTabContainer
-                            uid={this.state.profile.id}
-                            wid={this.props.watchlistId}
-                            sid={this.props.stockId}
-                            history={this.props.history}/>
-                        <DetailComponent
-                            sid={this.props.stockId}/>
-                    </div>
-                </div>
-                }
-                {!this.state.session && 
+                    }
+                    {!this.state.session &&
                     <h2>PLEASE login first!</h2>
-                }
-            </div>
+                    }
+                </div>
             </Provider>
         )
     }
 }
+
 export default WatchlistEditor

@@ -79,36 +79,58 @@ export default class AdminComponent extends React.Component {
                 <div
                     className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
 
-                    <form className="form-inline">
-                        <Link to="/home">
-                            <button className="btn btn-outline-dark">home</button>
-                        </Link>
-                        <div hidden={this.state.profile.username}>
-                        <Link to="/watchlist">
-                            <button className="btn btn-outline-dark">watch-list</button>
-                        </Link>
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                        <h2 className="navbar-brand" >Stocks4all</h2>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <ul className="navbar-nav">
+                                <li className="nav-item active">
+                                    <Link to="/home">
+                                        <button className="btn btn-outline-dark">Home</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item" hidden={!this.state.admin.username}>
+                                    <Link to="/admin">
+                                        <button className="btn btn-outline-dark">Admin options</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item " hidden={this.state.admin.username}>
+                                    <Link to="/watchlist">
+                                        <button className="btn btn-outline-dark">Watchlist</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item" hidden={this.state.admin.username}>
+                                    <Link to="/research">
+                                        <button className="btn btn-outline-dark">Self-Research</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item nav-right" hidden={this.state.profile.username || this.state.admin.username}>
+                                    <Link className="" to="/login">
+                                        <button className="btn btn-outline-primary">Login</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item nav-right" hidden={this.state.profile.username || this.state.admin.username}>
+                                    <Link to="/register">
+                                        <button className="btn btn-outline-primary">SignUp</button>
+                                    </Link>
+                                </li>
+                                <li className="nav-item nav-right" hidden={!this.state.profile.username && !this.state.admin.username}>
+                                    <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log
+                                        out
+                                    </button>
+                                </li>
+                                <li className="nav-item nav-right"  hidden={!this.state.profile.username || this.state.admin.username}>
+                                    <Link to="/profile">
+                                        <button className="btn btn-outline-primary">Profile</button>
+                                    </Link>
+                                </li>
+                            </ul>
                         </div>
-                        <div hidden={this.state.profile.username}>
-                        <Link to="/research">
-                            <button className="btn btn-outline-dark">self-research</button>
-                        </Link>
-                        </div>
-                        <div hidden={this.state.profile.username}>
-                            <Link className="" to="/login">
-                                <button className="btn btn-outline-primary">Log in</button>
-                            </Link>
-                        </div>
-                        <div hidden={this.state.profile.username}>
-                            <Link to="/register">
-                                <button className="btn btn-outline-primary">Sign up</button>
-                            </Link>
-                        </div>
-                        <div hidden={!this.state.profile.username}>
-                            <Link to="/home">
-                            <button className="btn btn-outline-primary" onClick={()=>this.logout()}>Log out</button>
-                            </Link>
-                        </div>
-                    </form>
+                    </nav>
 
                 </div>
                 {this.state.profile.username &&
