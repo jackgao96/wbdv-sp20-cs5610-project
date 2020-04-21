@@ -55,7 +55,7 @@ class WatchlistEditor extends React.Component {
         return (
             <Provider store={store}>
                 <div>
-                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <nav className="navbar navbar-expand-lg">
                         <h2 className="navbar-brand">Stocks4all</h2>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -67,37 +67,50 @@ class WatchlistEditor extends React.Component {
                             <ul className="navbar-nav">
                                 <li className="nav-item active">
                                     <Link to="/home">
-                                        <button className="btn btn-outline-dark">Home</button>
+                                        <button
+                                            style={{color: 'black'}}
+                                            className="btn btn-outline-dark">Home</button>
                                     </Link>
                                 </li>
                                 <li className="nav-item ">
                                     <Link to="/watchlist">
-                                        <button className="btn btn-outline-dark">Watchlist</button>
+                                        <button
+                                            style={{color: 'black'}}
+                                            className="btn btn-outline-dark">Watchlist</button>
                                     </Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/research">
-                                        <button className="btn btn-outline-dark">Self-Research</button>
+                                        <button
+                                            style={{color: 'black'}}
+                                            className="btn btn-outline-dark">Self-Research</button>
                                     </Link>
                                 </li>
                                 <li className="nav-item nav-right" hidden={this.state.session}>
                                     <Link className="" to="/login">
-                                        <button className="btn btn-outline-primary">Login</button>
+                                        <button
+                                            style={{color: 'black'}}
+                                            className="btn btn-outline-primary">Login</button>
                                     </Link>
                                 </li>
                                 <li className="nav-item nav-right" hidden={this.state.session}>
                                     <Link to="/register">
-                                        <button className="btn btn-outline-primary">SignUp</button>
+                                        <button
+                                            style={{color: 'black'}}
+                                            className="btn btn-outline-primary">SignUp</button>
                                     </Link>
                                 </li>
                                 <li className="nav-item nav-right" hidden={!this.state.session}>
-                                    <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log
-                                        out
+                                    <button
+                                        style={{color: 'black'}}
+                                        className="btn btn-outline-primary" onClick={() => this.logout()}>Logout
                                     </button>
                                 </li>
                                 <li className="nav-item nav-right" hidden={!this.state.session}>
                                     <Link to="/profile">
-                                        <button className="btn btn-outline-primary">Profile</button>
+                                        <button
+                                            style={{color: 'black'}}
+                                            className="btn btn-outline-primary">Profile</button>
                                     </Link>
                                 </li>
                             </ul>
