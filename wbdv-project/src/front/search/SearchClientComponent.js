@@ -177,7 +177,7 @@ class SearchClientComponent extends React.Component {
                                 >Show Details
                                 </button>
 
-                                {this.state.password&&<div>
+                                {<div>
                                     <select className="custom-select" id="inputGroupSelect01"
                                             onChange={(e) => {
                                                 const newType = e.target.value
