@@ -79,7 +79,7 @@ export default class AdminComponent extends React.Component {
                 <div
                     className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
 
-                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <nav className="navbar navbar-expand-lg ">
                         <h2 className="navbar-brand" >Stocks4all</h2>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
@@ -105,7 +105,7 @@ export default class AdminComponent extends React.Component {
                                 </li>
                                 <li className="nav-item" hidden={this.state.admin.username}>
                                     <Link to="/research">
-                                        <button className="btn btn-outline-dark">Self-Research</button>
+                                        <button className="btn btn-outline-dark">Research</button>
                                     </Link>
                                 </li>
                                 <li className="nav-item nav-right" hidden={this.state.profile.username || this.state.admin.username}>

@@ -59,8 +59,8 @@ class ProfilePageClient extends React.Component{
 
 
 
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <h2 className="navbar-brand" >Stocks4all</h2>
+                <nav className="navbar navbar-expand-lg ">
+                    <h2 className="navbar-brand" onClick={() => this.props.history.push("/")}>Stocks4all</h2>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -85,7 +85,7 @@ class ProfilePageClient extends React.Component{
                             </li>
                             <li className="nav-item" hidden={this.state.admin.username}>
                                 <Link to="/research">
-                                    <button className="btn btn-outline-dark">Self-Research</button>
+                                    <button className="btn btn-outline-dark">Research</button>
                                 </Link>
                             </li>
                             <li className="nav-item nav-right" hidden={this.state.profile.username || this.state.admin.username}>

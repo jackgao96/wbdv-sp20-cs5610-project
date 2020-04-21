@@ -81,8 +81,8 @@ class SearchClientComponent extends React.Component {
     render() {
         return (
             <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <h2 className="navbar-brand">Stocks4all</h2>
+                <nav className="navbar navbar-expand-lg ">
+                    <h2 className="navbar-brand" onClick={() => this.props.history.push("/")}>Stocks4all</h2>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -102,7 +102,7 @@ class SearchClientComponent extends React.Component {
                             </li>
                             <li className="nav-item">
                                 <Link to="/research">
-                                    <button className="btn btn-outline-dark">Self-Research</button>
+                                    <button className="btn btn-outline-dark">Research</button>
                                 </Link>
                             </li>
                             <li className="nav-item nav-right" hidden={this.state.profile.password}>
@@ -129,7 +129,7 @@ class SearchClientComponent extends React.Component {
                     </div>
                 </nav>
                 <div className="container">
-                    <h1>self-research</h1>
+                    <h1>research</h1>
                     <div className="row">
                         <hr/>
                         Hi {this.state.profile.username}!
