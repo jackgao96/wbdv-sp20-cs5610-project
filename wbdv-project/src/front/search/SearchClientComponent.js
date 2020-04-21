@@ -11,19 +11,19 @@ class SearchClientComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            chosewatchlist:{},
+            chosewatchlist: {},
             stockname: '',
             gainstock: [],
             losestock: [],
             stock: {
                 profile: {
                     companyName: '',
-                    watchlists:[]
+                    watchlists: []
                 }
             },
             profile: {
                 id: '',
-                watchlists:[],
+                watchlists: [],
                 username: '',
                 password: '',
                 firstName: '',
@@ -82,7 +82,7 @@ class SearchClientComponent extends React.Component {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <h2 className="navbar-brand" >Stocks4all</h2>
+                    <h2 className="navbar-brand">Stocks4all</h2>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -120,7 +120,7 @@ class SearchClientComponent extends React.Component {
                                     out
                                 </button>
                             </li>
-                            <li className="nav-item nav-right"  hidden={!this.state.profile.password}>
+                            <li className="nav-item nav-right" hidden={!this.state.profile.password}>
                                 <Link to="/profile">
                                     <button className="btn btn-outline-primary">Profile</button>
                                 </Link>
@@ -183,15 +183,18 @@ class SearchClientComponent extends React.Component {
                                                 const newType = e.target.value
                                                 console.log(e.target.value)
                                                 this.setState(prevState => ({
-                                                    chosewatchlist:newType
+                                                    chosewatchlist: newType
                                                 }))
                                             }}
                                             value={this.state.chosewatchlist}
                                     >
-                                        <option className="btn bg-info btn-rounded my-0" type="submit" value=''>please choose your watchlist: </option>
+                                        <option className="btn bg-info btn-rounded my-0" type="submit" value=''>please
+                                            choose your watchlist:
+                                        </option>
                                         {this.state.profile.watchlists.map(watchlist =>
                                             <option
-                                                className="btn bg-info btn-rounded my-0" type="submit" value={watchlist.id}>
+                                                className="btn bg-info btn-rounded my-0" type="submit"
+                                                value={watchlist.id}>
                                                 Your Watchlist: {watchlist.title}
                                             </option>
                                         )
@@ -225,43 +228,45 @@ class SearchClientComponent extends React.Component {
                     </div>
                     }
                 </div>
-                <div className="row container">
-                    <div className="col-sm-6">
-                        <h3 className="alert alert-success">
-                            Today's Top Gainer
-                        </h3>
+                <div className="container">
+                    <div className="row container">
+                        <div className="col-sm-6">
+                            <h3 className="alert alert-success">
+                                Today's Top Gainer
+                            </h3>
 
-                        {
-                            this.state.gainstock.mostGainerStock && this.state.gainstock.mostGainerStock.map(itstock =>
-                                <div className="row container">
-                                    <h5>Name:</h5> {itstock.companyName}
-                                    {itstock.ticker}
-                                    <h5>Percentage:</h5>
-                                    {itstock.changesPercentage}
-                                    <h5>Price:</h5>
-                                    {itstock.price}
-                                </div>
-                            )
-                        }
-                    </div>
-                    <div className={"col-sm-6"}>
-                        <h3 className="alert alert-danger">
-                            Today's Top Loser
-                        </h3>
+                            {
+                                this.state.gainstock.mostGainerStock && this.state.gainstock.mostGainerStock.map(itstock =>
+                                    <div className="row container">
+                                        <h5>Name:</h5> {itstock.companyName}
+                                        {itstock.ticker}
+                                        <h5>Percentage:</h5>
+                                        {itstock.changesPercentage}
+                                        <h5>Price:</h5>
+                                        {itstock.price}
+                                    </div>
+                                )
+                            }
+                        </div>
+                        <div className={"col-sm-6"}>
+                            <h3 className="alert alert-danger">
+                                Today's Top Loser
+                            </h3>
 
-                        {
-                            //console.log(this.state.initstock.mostGainerStock)
-                            this.state.losestock.mostLoserStock && this.state.losestock.mostLoserStock.map(itstock =>
-                                <div className="row container">
-                                    <h5>Name:</h5> {itstock.companyName}
-                                    {itstock.ticker}
-                                    <h5>Percentage:</h5>
-                                    {itstock.changesPercentage}
-                                    <h5>Price:</h5>
-                                    {itstock.price}
-                                </div>
-                            )
-                        }
+                            {
+                                //console.log(this.state.initstock.mostGainerStock)
+                                this.state.losestock.mostLoserStock && this.state.losestock.mostLoserStock.map(itstock =>
+                                    <div className="row container">
+                                        <h5>Name:</h5> {itstock.companyName}
+                                        {itstock.ticker}
+                                        <h5>Percentage:</h5>
+                                        {itstock.changesPercentage}
+                                        <h5>Price:</h5>
+                                        {itstock.price}
+                                    </div>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
 

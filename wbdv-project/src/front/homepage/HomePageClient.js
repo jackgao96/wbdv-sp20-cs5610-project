@@ -70,7 +70,6 @@ class HomePageClient extends React.Component {
             <div className="demo">
                 <div className="content">
                     <div id="large-header" className="large-header">
-                        <canvas id="demo-canvas"></canvas>
                         <div>
 
                             {this.state.admin.username}

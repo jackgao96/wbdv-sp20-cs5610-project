@@ -2,7 +2,8 @@
 
 
 .navbar{
-    background-color: rgba(1,1,1,1);
+    background-color: rgb(1, 1, 1);
+    margin-bottom: 5%;
     /*opacity: .4;*/
 }
 
@@ -10,54 +11,21 @@
     margin: auto 40% auto 30%;
     opacity: 1;
 }
-
-/*.card{*/
-/*    opacity: 0.2;*/
-/*}*/
-
-/*.card-body, .card-img-top{*/
-/*    opacity: 1;*/
-/*}*/
-
-.large-header {
-    position: relative;
-    width: 100%;
-    background: #111;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center center;
-    z-index: 1;
+body {
+    background: linear-gradient(-45deg, #69e2eb, #b0b2b3, #9a9c9c, #ffffff);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
 }
 
-.demo .large-header {
-    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
-}
-
-.main-title {
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    color: #F9F1E9;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    transform: translate3d(-50%, -50%, 0);
-}
-
-.demo .main-title {
-    text-transform: uppercase;
-    font-size: 4.2em;
-    letter-spacing: 0.1em;
-}
-
-.main-title .thin {
-    font-weight: 200;
-}
-
-@media only screen and (max-width: 768px) {
-    .demo .main-title {
-        font-size: 3em;
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
     }
 }
 
