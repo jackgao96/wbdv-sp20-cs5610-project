@@ -73,37 +73,22 @@ class ProfilePageClient extends React.Component{
                                     <button className="btn btn-outline-dark">Home</button>
                                 </Link>
                             </li>
-                            <li className="nav-item" hidden={!this.state.admin.username}>
-                                <Link to="/admin">
-                                    <button className="btn btn-outline-dark">Admin options</button>
-                                </Link>
-                            </li>
-                            <li className="nav-item " hidden={this.state.admin.username}>
-                                <Link to="/watchlist">
-                                    <button className="btn btn-outline-dark">Watchlist</button>
-                                </Link>
-                            </li>
-                            <li className="nav-item" hidden={this.state.admin.username}>
-                                <Link to="/research">
-                                    <button className="btn btn-outline-dark">Research</button>
-                                </Link>
-                            </li>
-                            <li className="nav-item nav-right" hidden={this.state.profile.username || this.state.admin.username}>
+
+                            <li className="nav-item nav-right" hidden={this.state.username  }>
                                 <Link className="" to="/login">
                                     <button className="btn btn-outline-primary">Login</button>
                                 </Link>
                             </li>
-                            <li className="nav-item nav-right" hidden={this.state.profile.username || this.state.admin.username}>
+                            <li className="nav-item nav-right" hidden={this.state.username }>
                                 <Link to="/register">
                                     <button className="btn btn-outline-primary">SignUp</button>
                                 </Link>
                             </li>
-                            <li className="nav-item nav-right" hidden={!this.state.profile.username && !this.state.admin.username}>
-                                <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log
-                                    out
+                            <li className="nav-item nav-right" hidden={!this.state.username }>
+                                <button className="btn btn-outline-primary" onClick={() => this.logout()}>Logout
                                 </button>
                             </li>
-                            <li className="nav-item nav-right"  hidden={!this.state.profile.username || this.state.admin.username}>
+                            <li className="nav-item nav-right"  hidden={!this.state.username }>
                                 <Link to="/profile">
                                     <button className="btn btn-outline-primary">Profile</button>
                                 </Link>
@@ -152,6 +137,7 @@ class ProfilePageClient extends React.Component{
                             />
                         </div>
                         <button
+                            style={{color: 'black'}}
                             className="btn btn-outline-dark"
                             onClick={ () => {
                             this.update(this.state)
@@ -176,7 +162,9 @@ class ProfilePageClient extends React.Component{
                                 password:
                                 <a hidden={!this.state.showPwd}>{this.state.password}
                                     <button
-                                        className="float-right"
+                                        style={{color: 'black'}}
+                                        className="btn btn-outline-dark float-right"
+
                                         hidden={!this.state.showPwd}
                                         onClick={() => {
                                             this.setState({
@@ -187,7 +175,8 @@ class ProfilePageClient extends React.Component{
 
                                 <a hidden={this.state.showPwd}>*******
                                     <button
-                                        className="float-right"
+                                        style={{color: 'black'}}
+                                        className="btn btn-outline-dark float-right"
                                         hidden={this.state.showPwd}
                                         onClick={() => {
                                             this.setState({
@@ -202,11 +191,14 @@ class ProfilePageClient extends React.Component{
                         </ul>
 
                         <Link to = "/watchlist">
-                            <button className="btn btn-outline-dark">Watchlist</button>
+                            <button
+                                style={{color: 'black'}}
+                                className="btn btn-outline-dark">Watchlist</button>
                         </Link>
 
 
                         <button
+                            style={{color: 'black'}}
                             className="btn btn-outline-dark"
                             onClick={ () => {
                             this.setState({

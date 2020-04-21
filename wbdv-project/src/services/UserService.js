@@ -13,7 +13,7 @@ class UserService{
                 'content-type': 'application/json'
             },
             credentials: "include"
-        }).then(response => console.log(response.json()))
+        }).then(response => response.json())
     }
     logout = async() => {
         return await fetch("https://infinite-retreat-10652.herokuapp.com/logout",{

@@ -117,9 +117,11 @@ class HomePageClient extends React.Component {
                                         </li>
                                         <li className="nav-item nav-right"
                                             hidden={!this.state.profile.username && !this.state.admin.username}>
-                                            <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log
-                                                out
-                                            </button>
+                                            <Link to='/'>
+                                                <button className="btn btn-outline-primary" onClick={() => this.logout()}>Logout
+                                                </button>
+                                            </Link>
+
                                         </li>
                                         <li className="nav-item nav-right"
                                             hidden={!this.state.profile.username || this.state.admin.username}>

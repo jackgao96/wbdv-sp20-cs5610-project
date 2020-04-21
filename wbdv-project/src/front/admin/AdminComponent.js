@@ -89,45 +89,17 @@ export default class AdminComponent extends React.Component {
                                     <button className="btn btn-outline-dark">Home</button>
                                 </Link>
                             </li>
-                            <li className="nav-item" hidden={!this.state.admin.username}>
-                                <Link to="/admin">
-                                    <button className="btn btn-outline-dark">Admin options</button>
-                                </Link>
-                            </li>
-                            <li className="nav-item " hidden={this.state.admin.username}>
-                                <Link to="/watchlist">
-                                    <button className="btn btn-outline-dark">Watchlist</button>
-                                </Link>
-                            </li>
-                            <li className="nav-item" hidden={this.state.admin.username}>
-                                <Link to="/research">
-                                    <button className="btn btn-outline-dark">Research</button>
-                                </Link>
-                            </li>
+
+
+
+
                             <li className="nav-item nav-right"
-                                hidden={this.state.profile.username || this.state.admin.username}>
-                                <Link className="" to="/login">
-                                    <button className="btn btn-outline-primary">Login</button>
-                                </Link>
-                            </li>
-                            <li className="nav-item nav-right"
-                                hidden={this.state.profile.username || this.state.admin.username}>
-                                <Link to="/register">
-                                    <button className="btn btn-outline-primary">SignUp</button>
-                                </Link>
-                            </li>
-                            <li className="nav-item nav-right"
-                                hidden={!this.state.profile.username && !this.state.admin.username}>
+                                hidden={!this.state.profile.username }>
                                 <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log
                                     out
                                 </button>
                             </li>
-                            <li className="nav-item nav-right"
-                                hidden={!this.state.profile.username || this.state.admin.username}>
-                                <Link to="/profile">
-                                    <button className="btn btn-outline-primary">Profile</button>
-                                </Link>
-                            </li>
+
                         </ul>
                     </div>
                 </nav>

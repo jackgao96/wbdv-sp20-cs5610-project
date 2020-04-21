@@ -116,8 +116,7 @@ class SearchClientComponent extends React.Component {
                                 </Link>
                             </li>
                             <li className="nav-item nav-right" hidden={!this.state.profile.password}>
-                                <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log
-                                    out
+                                <button className="btn btn-outline-primary" onClick={() => this.logout()}>Logout
                                 </button>
                             </li>
                             <li className="nav-item nav-right" hidden={!this.state.profile.password}>
