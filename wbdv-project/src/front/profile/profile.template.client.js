@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {getProfile} from "../../services/ProfileService";
 import UserService from '../../services/UserService'
 import WatchlistService from "../../services/WatchlistService";
+import "./profile.style.css"
 
 class ProfilePageClient extends React.Component{
 
@@ -58,36 +59,58 @@ class ProfilePageClient extends React.Component{
 
 
 
-                <form className="form-inline">
-                    <Link to="/home">
-                        <button className="btn btn-outline-dark">home</button>
-                    </Link>
-
-                    <div hidden={!this.state.username}>
-                        <Link to="/research">
-                            <button className="btn btn-outline-dark">self-research</button>
-                        </Link>
+                <nav className="navbar navbar-expand-lg ">
+                    <h2 className="navbar-brand" onClick={() => this.props.history.push("/")}>Stocks4all</h2>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <ul className="navbar-nav">
+                            <li className="nav-item active">
+                                <Link to="/home">
+                                    <button className="btn btn-outline-dark">Home</button>
+                                </Link>
+                            </li>
+                            <li className="nav-item" hidden={!this.state.admin.username}>
+                                <Link to="/admin">
+                                    <button className="btn btn-outline-dark">Admin options</button>
+                                </Link>
+                            </li>
+                            <li className="nav-item " hidden={this.state.admin.username}>
+                                <Link to="/watchlist">
+                                    <button className="btn btn-outline-dark">Watchlist</button>
+                                </Link>
+                            </li>
+                            <li className="nav-item" hidden={this.state.admin.username}>
+                                <Link to="/research">
+                                    <button className="btn btn-outline-dark">Research</button>
+                                </Link>
+                            </li>
+                            <li className="nav-item nav-right" hidden={this.state.profile.username || this.state.admin.username}>
+                                <Link className="" to="/login">
+                                    <button className="btn btn-outline-primary">Login</button>
+                                </Link>
+                            </li>
+                            <li className="nav-item nav-right" hidden={this.state.profile.username || this.state.admin.username}>
+                                <Link to="/register">
+                                    <button className="btn btn-outline-primary">SignUp</button>
+                                </Link>
+                            </li>
+                            <li className="nav-item nav-right" hidden={!this.state.profile.username && !this.state.admin.username}>
+                                <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log
+                                    out
+                                </button>
+                            </li>
+                            <li className="nav-item nav-right"  hidden={!this.state.profile.username || this.state.admin.username}>
+                                <Link to="/profile">
+                                    <button className="btn btn-outline-primary">Profile</button>
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
-                    <div hidden={!this.state.username}>
-                        <Link to="/watchlist">
-                            <button className="btn btn-outline-dark">watch-list</button>
-                        </Link>
-                    </div>
-                    <div hidden={this.state.username}>
-                        <Link className="" to="/login">
-                            <button className="btn btn-outline-primary">Log in</button>
-                        </Link>
-                    </div>
-                    <div hidden={this.state.username}>
-                        <Link to="/register">
-                            <button className="btn btn-outline-primary">Sign up</button>
-                        </Link>
-                    </div>
-                    <div hidden={!this.state.username}>
-                        <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log out</button>
-                    </div>
-
-                </form>
+                </nav>
 
 
 

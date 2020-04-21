@@ -5,24 +5,25 @@ import {Link} from "react-router-dom";
 import UserService from "../../services/UserService";
 import AdminService from "../../services/AdminService";
 import StockService from "../../services/StockService";
+import "./SearchStyle.css"
 
 class SearchClientComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            chosewatchlist:{},
+            chosewatchlist: {},
             stockname: '',
             gainstock: [],
             losestock: [],
             stock: {
                 profile: {
                     companyName: '',
-                    watchlists:[]
+                    watchlists: []
                 }
             },
             profile: {
                 id: '',
-                watchlists:[],
+                watchlists: [],
                 username: '',
                 password: '',
                 firstName: '',
@@ -80,51 +81,55 @@ class SearchClientComponent extends React.Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <div
-                        className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-                        <h5 className="my-0 mr-md-auto font-weight-normal"> Logo Here </h5>
-                        <img src=""/>
-                        <a> About </a>
-                    </div>
-                    <div
-                        className="d-flex flex-column align-items-center bg-white border-bottom shadow-sm">
-
-                        <form className="form-inline">
-                            <Link to="/home">
-                                <button className="btn btn-outline-dark">home</button>
-                            </Link>
-                            <Link to="/watchlist">
-                                <button className="btn btn-outline-dark">watch-list</button>
-                            </Link>
-                            <Link to="/research">
-                                <button className="btn btn-outline-dark">self-research</button>
-                            </Link>
-                            <div hidden={this.state.profile.password}>
+                <nav className="navbar navbar-expand-lg ">
+                    <h2 className="navbar-brand" onClick={() => this.props.history.push("/")}>Stocks4all</h2>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <ul className="navbar-nav">
+                            <li className="nav-item active">
+                                <Link to="/home">
+                                    <button className="btn btn-outline-dark">Home</button>
+                                </Link>
+                            </li>
+                            <li className="nav-item ">
+                                <Link to="/watchlist">
+                                    <button className="btn btn-outline-dark">Watchlist</button>
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/research">
+                                    <button className="btn btn-outline-dark">Research</button>
+                                </Link>
+                            </li>
+                            <li className="nav-item nav-right" hidden={this.state.profile.password}>
                                 <Link className="" to="/login">
-                                    <button className="btn btn-outline-primary">Log in</button>
+                                    <button className="btn btn-outline-primary">Login</button>
                                 </Link>
-                            </div>
-                            <div hidden={this.state.profile.password}>
+                            </li>
+                            <li className="nav-item nav-right" hidden={this.state.profile.password}>
                                 <Link to="/register">
-                                    <button className="btn btn-outline-primary">Sign up</button>
+                                    <button className="btn btn-outline-primary">SignUp</button>
                                 </Link>
-                            </div>
-                            <div hidden={!this.state.profile.password}>
-                                <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log out
+                            </li>
+                            <li className="nav-item nav-right" hidden={!this.state.profile.password}>
+                                <button className="btn btn-outline-primary" onClick={() => this.logout()}>Log
+                                    out
                                 </button>
-                            </div>
-                            <div hidden={!this.state.profile.password}>
+                            </li>
+                            <li className="nav-item nav-right" hidden={!this.state.profile.password}>
                                 <Link to="/profile">
                                     <button className="btn btn-outline-primary">Profile</button>
                                 </Link>
-                            </div>
-                        </form>
-
+                            </li>
+                        </ul>
                     </div>
-                </div>
+                </nav>
                 <div className="container">
-                    <h1>self-research</h1>
+                    <h1>research</h1>
                     <div className="row">
                         <hr/>
                         Hi {this.state.profile.username}!
@@ -172,21 +177,25 @@ class SearchClientComponent extends React.Component {
                                     }
                                 >Show Details
                                 </button>
-                                <div>
+
+                                {this.state.password&&<div>
                                     <select className="custom-select" id="inputGroupSelect01"
                                             onChange={(e) => {
                                                 const newType = e.target.value
                                                 console.log(e.target.value)
                                                 this.setState(prevState => ({
-                                                    chosewatchlist:newType
+                                                    chosewatchlist: newType
                                                 }))
                                             }}
                                             value={this.state.chosewatchlist}
                                     >
-                                        <option className="btn bg-info btn-rounded my-0" type="submit" value=''>please choose your watchlist: </option>
+                                        <option className="btn bg-info btn-rounded my-0" type="submit" value=''>please
+                                            choose your watchlist:
+                                        </option>
                                         {this.state.profile.watchlists.map(watchlist =>
                                             <option
-                                                className="btn bg-info btn-rounded my-0" type="submit" value={watchlist.id}>
+                                                className="btn bg-info btn-rounded my-0" type="submit"
+                                                value={watchlist.id}>
                                                 Your Watchlist: {watchlist.title}
                                             </option>
                                         )
@@ -201,6 +210,8 @@ class SearchClientComponent extends React.Component {
                                         })}>Add
                                     </button>
                                 </div>
+                                }
+
                             </div>
                         </div>}
                         {this.state.viewdetail == 1 &&
@@ -220,43 +231,45 @@ class SearchClientComponent extends React.Component {
                     </div>
                     }
                 </div>
-                <div className="row container">
-                    <div className="col-sm-6">
-                        <h3 className="alert alert-success">
-                            Today's Top Gainer
-                        </h3>
+                <div className="container">
+                    <div className="row container">
+                        <div className="col-sm-6">
+                            <h3 className="alert alert-success">
+                                Today's Top Gainer
+                            </h3>
 
-                        {
-                            this.state.gainstock.mostGainerStock && this.state.gainstock.mostGainerStock.map(itstock =>
-                                <div className="row container">
-                                    <h5>Name:</h5> {itstock.companyName}
-                                    {itstock.ticker}
-                                    <h5>Percentage:</h5>
-                                    {itstock.changesPercentage}
-                                    <h5>Price:</h5>
-                                    {itstock.price}
-                                </div>
-                            )
-                        }
-                    </div>
-                    <div className={"col-sm-6"}>
-                        <h3 className="alert alert-danger">
-                            Today's Top Loser
-                        </h3>
+                            {
+                                this.state.gainstock.mostGainerStock && this.state.gainstock.mostGainerStock.map(itstock =>
+                                    <div className="row container">
+                                        <h5>Name:</h5> {itstock.companyName}
+                                        {itstock.ticker}
+                                        <h5>Percentage:</h5>
+                                        {itstock.changesPercentage}
+                                        <h5>Price:</h5>
+                                        {itstock.price}
+                                    </div>
+                                )
+                            }
+                        </div>
+                        <div className={"col-sm-6"}>
+                            <h3 className="alert alert-danger">
+                                Today's Top Loser
+                            </h3>
 
-                        {
-                            //console.log(this.state.initstock.mostGainerStock)
-                            this.state.losestock.mostLoserStock && this.state.losestock.mostLoserStock.map(itstock =>
-                                <div className="row container">
-                                    <h5>Name:</h5> {itstock.companyName}
-                                    {itstock.ticker}
-                                    <h5>Percentage:</h5>
-                                    {itstock.changesPercentage}
-                                    <h5>Price:</h5>
-                                    {itstock.price}
-                                </div>
-                            )
-                        }
+                            {
+                                //console.log(this.state.initstock.mostGainerStock)
+                                this.state.losestock.mostLoserStock && this.state.losestock.mostLoserStock.map(itstock =>
+                                    <div className="row container">
+                                        <h5>Name:</h5> {itstock.companyName}
+                                        {itstock.ticker}
+                                        <h5>Percentage:</h5>
+                                        {itstock.changesPercentage}
+                                        <h5>Price:</h5>
+                                        {itstock.price}
+                                    </div>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
 
