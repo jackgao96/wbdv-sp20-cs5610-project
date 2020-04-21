@@ -177,7 +177,8 @@ class SearchClientComponent extends React.Component {
                                     }
                                 >Show Details
                                 </button>
-                                <div>
+
+                                {this.state.password&&<div>
                                     <select className="custom-select" id="inputGroupSelect01"
                                             onChange={(e) => {
                                                 const newType = e.target.value
@@ -209,6 +210,8 @@ class SearchClientComponent extends React.Component {
                                         })}>Add
                                     </button>
                                 </div>
+                                }
+
                             </div>
                         </div>}
                         {this.state.viewdetail == 1 &&
