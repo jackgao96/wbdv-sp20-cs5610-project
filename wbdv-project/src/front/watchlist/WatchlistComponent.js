@@ -41,17 +41,17 @@ class WatchlistComponent extends React.Component {
                                     <button className="btn btn-outline-dark">Home</button>
                                 </Link>
                             </li>
-                            <li className="nav-item" hidden={!this.state.admin.username}>
+                            <li className="nav-item" hidden={!this.props.state.admin.username}>
                                 <Link to="/admin">
                                     <button className="btn btn-outline-dark">Admin options</button>
                                 </Link>
                             </li>
-                            <li className="nav-item " hidden={this.state.admin.username}>
+                            <li className="nav-item " hidden={this.props.state.admin.username}>
                                 <Link to="/watchlist">
                                     <button className="btn btn-outline-dark">Watchlist</button>
                                 </Link>
                             </li>
-                            <li className="nav-item" hidden={this.state.admin.username}>
+                            <li className="nav-item" hidden={this.props.state.admin.username}>
                                 <Link to="/research">
                                     <button className="btn btn-outline-dark">Research</button>
                                 </Link>
