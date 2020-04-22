@@ -163,7 +163,7 @@ class SearchClientComponent extends React.Component {
                                 Search Result
                             </h3>
                         </div>
-                        {this.state.viewdetail == 0 &&
+                        {this.state.viewdetail === 0 &&
                         <div>
                             <p><h5>Stock Name:</h5>{this.state.stock.profile.companyName}</p>
                             <div class="row">
@@ -177,43 +177,9 @@ class SearchClientComponent extends React.Component {
                                 >Show Details
                                 </button>
 
-                                {<div>
-                                    <select className="custom-select" id="inputGroupSelect01"
-                                            onChange={(e) => {
-                                                const newType = e.target.value
-                                                console.log(e.target.value)
-                                                this.setState(prevState => ({
-                                                    chosewatchlist: newType
-                                                }))
-                                            }}
-                                            value={this.state.chosewatchlist}
-                                    >
-                                        <option className="btn bg-info btn-rounded my-0" type="submit" value=''>please
-                                            choose your watchlist:
-                                        </option>
-                                        {this.state.profile.watchlists.map(watchlist =>
-                                            <option
-                                                className="btn bg-info btn-rounded my-0" type="submit"
-                                                value={watchlist.id}>
-                                                Your Watchlist: {watchlist.title}
-                                            </option>
-                                        )
-                                        }
-                                    </select>
-                                    <button onClick={() =>
-                                        this.addToWatchlist(this.state.chosewatchlist, {
-                                            name: this.props.stock.profile.companyName,
-                                            symbol: this.props.stock.symbol,
-                                            category: this.props.stock.profile.sector,
-                                            recommendation: 'Strong Buy'
-                                        })}>Add
-                                    </button>
-                                </div>
-                                }
-
                             </div>
                         </div>}
-                        {this.state.viewdetail == 1 &&
+                        {this.state.viewdetail === 1 &&
                         <div>
                             <SearchDetail stock={this.props.stock}></SearchDetail>
                             <button
@@ -224,6 +190,39 @@ class SearchClientComponent extends React.Component {
                                     })
                                 }
                             >Hide Details
+                            </button>
+                        </div>
+                        }
+                        {this.state.profile.password&&<div>
+                            <select className="custom-select" id="inputGroupSelect01"
+                                    onChange={(e) => {
+                                        const newType = e.target.value
+                                        console.log(e.target.value)
+                                        this.setState(prevState => ({
+                                            chosewatchlist: newType
+                                        }))
+                                    }}
+                                    value={this.state.chosewatchlist}
+                            >
+                                <option className="btn bg-info btn-rounded my-0" type="submit" value=''>please
+                                    choose your watchlist:
+                                </option>
+                                {this.state.profile.watchlists.map(watchlist =>
+                                    <option
+                                        className="btn bg-info btn-rounded my-0" type="submit"
+                                        value={watchlist.id}>
+                                        Your Watchlist: {watchlist.title}
+                                    </option>
+                                )
+                                }
+                            </select>
+                            <button onClick={() =>
+                                this.addToWatchlist(this.state.chosewatchlist, {
+                                    name: this.props.stock.profile.companyName,
+                                    symbol: this.props.stock.symbol,
+                                    category: this.props.stock.profile.sector,
+                                    recommendation: 'Strong Buy'
+                                })}>Add
                             </button>
                         </div>
                         }

@@ -65,48 +65,48 @@ class WatchlistEditor extends React.Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <ul className="navbar-nav">
-                                <li className="nav-item active">
+                                <li className="wl nav-item active">
                                     <Link to="/home">
                                         <button
                                             style={{color: 'black'}}
                                             className="btn btn-outline-dark">Home</button>
                                     </Link>
                                 </li>
-                                <li className="nav-item ">
+                                <li className="wl nav-item">
                                     <Link to="/watchlist">
                                         <button
                                             style={{color: 'black'}}
                                             className="btn btn-outline-dark">Watchlist</button>
                                     </Link>
                                 </li>
-                                <li className="nav-item">
+                                <li className="wl nav-item">
                                     <Link to="/research">
                                         <button
                                             style={{color: 'black'}}
                                             className="btn btn-outline-dark">Self-Research</button>
                                     </Link>
                                 </li>
-                                <li className="nav-item nav-right" hidden={this.state.session}>
+                                <li className="wl nav-item nav-right" hidden={this.state.session}>
                                     <Link className="" to="/login">
                                         <button
                                             style={{color: 'black'}}
                                             className="btn btn-outline-primary">Login</button>
                                     </Link>
                                 </li>
-                                <li className="nav-item nav-right" hidden={this.state.session}>
+                                <li className="wl nav-item nav-right" hidden={this.state.session}>
                                     <Link to="/register">
                                         <button
                                             style={{color: 'black'}}
                                             className="btn btn-outline-primary">SignUp</button>
                                     </Link>
                                 </li>
-                                <li className="nav-item nav-right" hidden={!this.state.session}>
+                                <li className="wl nav-item nav-right" hidden={!this.state.session}>
                                     <button
                                         style={{color: 'black'}}
                                         className="btn btn-outline-primary" onClick={() => this.logout()}>Logout
                                     </button>
                                 </li>
-                                <li className="nav-item nav-right" hidden={!this.state.session}>
+                                <li className="wl nav-item nav-right" hidden={!this.state.session}>
                                     <Link to="/profile">
                                         <button
                                             style={{color: 'black'}}
