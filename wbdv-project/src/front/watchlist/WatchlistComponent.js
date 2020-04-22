@@ -1,7 +1,6 @@
 import React from "react";
 import '../../css/style.css'
 import {Link} from "react-router-dom";
-import "./WatchlistStyle.css"
 
 class WatchlistComponent extends React.Component {
     constructor(props) {

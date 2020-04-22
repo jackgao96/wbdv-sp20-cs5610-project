@@ -17,7 +17,7 @@ export const addStockToWatchlist = async (wid, stock) => {
         headers: {
             'content-type': 'application/json'
         }
-    }).then(response => response.json())
+    })
 }
 
 export const removeStockFromWatchlist = async (wid, stockId) => {

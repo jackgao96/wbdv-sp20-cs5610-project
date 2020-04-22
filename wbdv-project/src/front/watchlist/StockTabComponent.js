@@ -16,7 +16,7 @@ export default class StockTabComponent extends React.Component{
     }
     render(){
         return(
-            <ul className="nav nav-pills">
+            <ul className="nav nav-tabs">
                 {
                     this.props.stocks && this.props.stocks.map(stock => 
                         <li className={`nav-item`}
@@ -30,7 +30,7 @@ export default class StockTabComponent extends React.Component{
                                         })
                                     }
                                 }>
-                                <span>{stock.name}</span>
+                                <span>{stock.symbol}</span>
                             </a>
                             <button onClick={()=>{
                                     this.props.history.push(`/watchlist/${this.props.wid}`)
