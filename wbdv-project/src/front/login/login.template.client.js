@@ -53,7 +53,7 @@ class LoginPageClient extends React.Component {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <ul className="navbar-nav">
+                        <ul className="navbar-nav" style={{width: '100px'}}>
                             <li className="nav-item active">
                                 <Link to="/home">
                                     <button className="btn btn-outline-dark">Home</button>

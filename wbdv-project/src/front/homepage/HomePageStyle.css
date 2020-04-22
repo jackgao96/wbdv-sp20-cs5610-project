@@ -1,11 +1,11 @@
 
-.navbar {
-    top: 0;
-    background: rgba(0, 0, 0, 0.5);
-    color: #f1f1f1;
-    width: 100%;
-    margin-bottom: 0;
-}
+/*.navbar {*/
+/*    top: 0;*/
+/*    background: rgba(0, 0, 0, 0.5);*/
+/*    color: #f1f1f1;*/
+/*    width: 100%;*/
+/*    margin-bottom: 0;*/
+/*}*/
 
 .btn {
     opacity: 1;
@@ -38,7 +38,8 @@ h5 {
 }
 
 .nav-item {
-    margin: auto 40% auto 30%;
+    margin: 40% auto 30%;
+
 }
 
 
