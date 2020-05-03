@@ -67,7 +67,7 @@ class WatchlistEditor extends React.Component {
 
                             <ul className="navbar-nav" style={{width: '100px'}}>
                                 <li className="nav-item active">
-                                    
+
                                     <Link to="/home">
                                         <button
                                             style={{color: 'black'}}
